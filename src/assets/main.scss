@@ -2,14 +2,21 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  border: none;
 }
 
 :root {
   --text-main: #cdcfd0;
   --border-main: #2f3336;
+  --background-main: #000000;
+  --background-secondary: #181919;
 }
 
 body {
-  background-color: #000000;
+  background-color: var(--background-main);
   color: var(--text-main);
+}
+
+img {
+  width: 100%;
 }

@@ -1,8 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Siderbar from "./components/Siderbar.vue";
+</script>
 
 <template>
   <div class="container">
-    <div class="sidebar">left side</div>
+    <div class="sidebar"><Siderbar /></div>
     <div class="feed">middle</div>
     <div class="widgets">right side</div>
   </div>
