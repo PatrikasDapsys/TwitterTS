@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import Siderbar from "./components/Siderbar.vue";
+import Sidebar from "./components/Sidebar.vue";
 </script>
 
 <template>
   <div class="container">
-    <div class="sidebar"><Siderbar /></div>
+    <div class="sidebar"><Sidebar /></div>
     <div class="feed">middle</div>
     <div class="widgets">right side</div>
   </div>
