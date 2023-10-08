@@ -7,7 +7,7 @@ defineProps({
 </script>
 
 <template>
-  <button :style="{ fontWeight: '{{active}} ? bold : regular' }">
+  <button :style="{ fontWeight: active ? '900' : '400' }">
     <font-awesome-icon :icon="icon" />
     <div class="">{{ name }}</div>
   </button>
@@ -20,7 +20,7 @@ button {
   color: var(--text-main);
   display: flex;
   align-items: center;
-  font-size: 26px;
+  font-size: 20px;
   padding: 12px 18px;
   border-radius: 9999px;
   cursor: pointer;

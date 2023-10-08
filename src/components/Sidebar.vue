@@ -67,7 +67,7 @@ const Tabs: {
       </figure>
       <ul>
         <li v-for="tab in Tabs">
-          <tabRow :name="tab.name" :icon="tab.icon" />
+          <tabRow :name="tab.name" :icon="tab.icon" :active="tab.active"/>
         </li>
       </ul>
       <div class="postWrapper">
@@ -80,6 +80,7 @@ const Tabs: {
 <style lang="scss" scoped>
 .container {
   padding: 8px;
+  margin-right: 16px;
 }
 figure {
   svg {
