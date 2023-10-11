@@ -5,6 +5,7 @@ import { ref } from "vue";
 const text = ref<string>("");
 const username = ref<string>("");
 const handle = ref<string>("");
+const profileImg = ref<string>("");
 const allowPost = ref<boolean>(false);
 
 function submitForm(event: Event) {
@@ -12,6 +13,7 @@ function submitForm(event: Event) {
   text.value = "";
   username.value = "";
   handle.value = "";
+  profileImg.value = "";
   allowPost.value = false;
 }
 function handleAllowPost() {
@@ -63,6 +65,13 @@ function handleAllowPost() {
                 required
                 v-model="handle"
               />
+              <input
+                type="text"
+                placeholder="Profile Image Link"
+                maxlength="15"
+                @change="handleAllowPost"
+                v-model="profileImg"
+              />
             </div>
             <textarea
               type="text"
@@ -88,7 +97,21 @@ function handleAllowPost() {
       </div>
     </form>
     <main>
-      <Post />
+      <Post
+        text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
+        incidunt ad possimus dolorem quas perferendis quae illum eum facere!
+        Officiis velit perspiciatis odit fugiat qui accusamus ad debitis
+        deserunt magnam.t"
+        username="johnDoe"
+        handle="@realJogh"
+        profileImg="https://thispersondoesnotexist.com/"
+      />
+      <Post
+      text="hey"
+        username="johnDoe"
+        handle="@realJogh"
+        profileImg="https://thispersondoesnotexist.com/"
+      />
     </main>
   </section>
 </template>
