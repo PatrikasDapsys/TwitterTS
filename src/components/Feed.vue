@@ -107,6 +107,48 @@ function handleAllowPost() {
         profileImg="https://thispersondoesnotexist.com/"
       />
       <Post
+        text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
+        incidunt ad possimus dolorem quas perferendis quae illum eum facere!
+        Officiis velit perspiciatis odit fugiat qui accusamus ad debitis
+        deserunt magnam.t"
+        username="johnDoe"
+        handle="@realJogh"
+        profileImg="https://thispersondoesnotexist.com/"
+      />
+      <Post
+        text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
+        incidunt ad possimus dolorem quas perferendis quae illum eum facere!
+        Officiis velit perspiciatis odit fugiat qui accusamus ad debitis
+        deserunt magnam.t"
+        username="johnDoe"
+        handle="@realJogh"
+        profileImg="https://thispersondoesnotexist.com/"
+      />
+      <Post
+        text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
+        incidunt ad possimus dolorem quas perferendis quae illum eum facere!
+        Officiis velit perspiciatis odit fugiat qui accusamus ad debitis
+        deserunt magnam.t"
+        username="johnDoe"
+        handle="@realJogh"
+        profileImg="https://thispersondoesnotexist.com/"
+      />
+      <Post
+        text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
+        incidunt ad possimus dolorem quas perferendis quae illum eum facere!
+        Officiis velit perspiciatis odit fugiat qui accusamus ad debitis
+        deserunt magnam.t"
+        username="johnDoe"
+        handle="@realJogh"
+        profileImg="https://thispersondoesnotexist.com/"
+      />
+      <Post
+        text="Lorem"
+        username="johnDoe"
+        handle="@realJogh"
+        profileImg="https://thispersondoesnotexist.com/"
+      />
+      <Post
       text="hey"
         username="johnDoe"
         handle="@realJogh"
@@ -171,7 +213,7 @@ header {
   width: 100%;
   border-bottom: 1px solid var(--border-main);
   padding: 16px;
-  padding-bottom: 0;
+  padding-bottom: 4px;
   .createPost__top {
     display: flex;
     width: 100%;

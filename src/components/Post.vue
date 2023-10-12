@@ -5,7 +5,6 @@ const props = defineProps({
   handle: String,
   profileImg: String,
 });
-console.log(props.text);
 </script>
 
 <template>
@@ -15,31 +14,31 @@ console.log(props.text);
         <img :src="profileImg" alt="" />
       </figure>
     </div>
-    <div class="">
+    <div class="post__text">
       <!-- text -->
       <div class="post__top">
         <div class="post__topLeft">
-          <span class="post__top--username">
+          <h2 class="post__top--username">
             {{ username }}
-          </span>
+          </h2>
           <figure class="verified">
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Twitter_Verified_Badge.svg/1200px-Twitter_Verified_Badge.svg.png"
               alt=""
             />
           </figure>
-          <span class="post__top--handle">
+          <h1 class="post__top--handle">
             {{ handle }}
-          </span>
+          </h1>
           <span class="dot"> &#8226;</span>
           <span> 8h</span>
         </div>
         <font-awesome-icon icon="fa-solid fa-ellipsis" />
       </div>
 
-      <div class="post__middle">
+      <p class="post__middle">
         {{ text }}
-      </div>
+      </p>
       <div class="post__bottom">
         <div>
           <font-awesome-icon icon="fa-regular fa-comment" />
@@ -96,6 +95,12 @@ console.log(props.text);
   margin: 0 8px 0 4px;
 }
 
+.post__text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
 .post__top {
   display: flex;
   justify-content: space-between;
@@ -105,6 +110,13 @@ console.log(props.text);
   }
   .post__topLeft {
     display: flex;
+    h1,
+    h2 {
+      font-size: 15px;
+    }
+    h1 {
+      font-weight: normal;
+    }
     span:first-child {
       cursor: pointer;
       font-weight: 700;

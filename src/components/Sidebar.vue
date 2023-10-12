@@ -62,12 +62,14 @@ const Tabs: {
 <template>
   <section>
     <div class="container">
-      <figure>
-        <font-awesome-icon icon="fa-brands fa-x-twitter" />
-      </figure>
+      <a href="/">
+        <figure>
+          <font-awesome-icon icon="fa-brands fa-x-twitter" />
+        </figure>
+      </a>
       <ul>
         <li v-for="tab in Tabs">
-          <tabRow :name="tab.name" :icon="tab.icon" :active="tab.active"/>
+          <tabRow :name="tab.name" :icon="tab.icon" :active="tab.active" />
         </li>
       </ul>
       <div class="postWrapper">
@@ -81,6 +83,9 @@ const Tabs: {
 .container {
   padding: 8px;
   margin-right: 16px;
+  a {
+    color: unset;
+  }
 }
 figure {
   svg {

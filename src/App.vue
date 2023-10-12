@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import Feed from "./components/Feed.vue";
 import Sidebar from "./components/Sidebar.vue";
+import Widgets from "./components/Widgets.vue";
 </script>
 
 <template>
   <div class="container">
     <div class="sidebar"><Sidebar /></div>
     <div class="feed"><Feed /></div>
-    <div class="widgets">right side</div>
+    <div class="widgets"><Widgets /></div>
   </div>
 </template>
 
@@ -24,17 +25,15 @@ import Sidebar from "./components/Sidebar.vue";
   max-height: 100vh;
 }
 .sidebar {
-  /* width: 20%; */
   flex: 0.2;
 }
 .feed {
   border-left: 0.5px solid var(--border-main);
   border-right: 1px solid var(--border-main);
-  flex: 0.5;
+  flex: 0.45;
   overflow-y: scroll;
 }
 .widgets {
   flex: 0.3;
-  text-align: right; //temp
 }
 </style>
