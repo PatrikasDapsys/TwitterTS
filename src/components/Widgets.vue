@@ -16,7 +16,7 @@ import FollowSuggestion from "./FollowSuggestion.vue";
       <button>Subscribe</button>
     </div>
     <div class="followSuggestions background--rounded">
-      <div>Who to follow</div>
+      <strong>Who to follow</strong>
       <FollowSuggestion
         username="Elon Musk"
         handle="elonmusk"
@@ -32,6 +32,7 @@ import FollowSuggestion from "./FollowSuggestion.vue";
         handle="therealjohndoe"
         profileImg="https://pbs.twimg.com/profile_images/1683325380441128960/yRsRRjGO_400x400.jpg"
       />
+      <button>Show more</button>
     </div>
   </section>
 </template>
@@ -90,5 +91,25 @@ section {
 }
 
 .followSuggestions {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  strong {
+    font-size: 20px;
+    padding: 12px 16px;
+    font-weight: 800;
+  }
+  button {
+    background: none;
+    text-align: left;
+    padding: 16px;
+    color: var(--brandBlue);
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 200ms ease;
+    &:hover {
+      background-color: #1d1f23;
+    }
+  }
 }
 </style>

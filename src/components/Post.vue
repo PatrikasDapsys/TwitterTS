@@ -105,6 +105,7 @@ const props = defineProps({
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 20px;
   *:not(:first-child) {
     color: gray;
   }
