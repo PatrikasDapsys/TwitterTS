@@ -34,8 +34,5 @@ button {
   div {
     margin: 0 20px;
   }
-  /* &:hover {
-    background-color: var(--background-secondary);
-  } */
 }
 </style>

@@ -1,5 +1,49 @@
 <script setup lang="ts">
 import FollowSuggestion from "./FollowSuggestion.vue";
+import TrendingTab from "./TrendingTab.vue";
+
+const trendingTabs = [
+  {
+    place: 1,
+    name: "Lithuania",
+  },
+  {
+    place: 2,
+    name: "Latvia",
+  },
+  {
+    place: 3,
+    name: "Estonia",
+  },
+  {
+    place: 4,
+    name: "Poland",
+  },
+  {
+    place: 5,
+    name: "USA",
+  },
+  {
+    place: 6,
+    name: "China",
+  },
+  {
+    place: 7,
+    name: "UK",
+  },
+  {
+    place: 8,
+    name: "Germany",
+  },
+  {
+    place: 9,
+    name: "France",
+  },
+  {
+    place: 10,
+    name: "Australia",
+  },
+];
 </script>
 <template>
   <section>
@@ -8,7 +52,7 @@ import FollowSuggestion from "./FollowSuggestion.vue";
       <input type="text" placeholder="Search" maxlength="30" />
     </div>
     <div class="premium background--rounded">
-      <strong> Subscribe to premium </strong>
+      <strong class="title"> Subscribe to premium </strong>
       <p>
         Subscribe to unlock new features and if eligible, receive a share of ads
         revenue.
@@ -16,7 +60,7 @@ import FollowSuggestion from "./FollowSuggestion.vue";
       <button>Subscribe</button>
     </div>
     <div class="followSuggestions background--rounded">
-      <strong>Who to follow</strong>
+      <strong class="title">Who to follow</strong>
       <FollowSuggestion
         username="Elon Musk"
         handle="elonmusk"
@@ -34,17 +78,29 @@ import FollowSuggestion from "./FollowSuggestion.vue";
       />
       <button>Show more</button>
     </div>
+    <div class="trending background--rounded">
+      <strong class="title">Lithuania trends</strong>
+      <div v-for="tab in trendingTabs" :key="tab.place" class="">
+        <TrendingTab :place="tab.place" :name="tab.name" />
+      </div>
+    </div>
   </section>
 </template>
 
 <style lang="scss" scoped>
 section {
-  margin: 16px 0 0 24px;
+  margin: 4px 0 0 24px;
 }
 
 .background--rounded {
   background-color: var(--background-blue-secondary);
   border-radius: 14px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 800;
+  padding: 12px 16px;
 }
 
 .searchBar {
@@ -70,15 +126,11 @@ section {
 .premium {
   display: flex;
   flex-direction: column;
-  padding: 18px;
+  padding: 12px 16px;
   gap: 12px;
   font-weight: 700;
   font-size: 15px;
   margin-bottom: 16px;
-  strong {
-    font-size: 20px;
-    font-weight: 900;
-  }
   button {
     width: fit-content;
     padding: 8px 16px;
@@ -88,16 +140,18 @@ section {
     font-size: 15px;
     font-weight: 700;
   }
+  .title {
+    padding: unset;
+  }
 }
 
 .followSuggestions {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  strong {
-    font-size: 20px;
+  margin-bottom: 16px;
+  .title {
     padding: 12px 16px;
-    font-weight: 800;
   }
   button {
     background: none;
@@ -111,5 +165,11 @@ section {
       background-color: #1d1f23;
     }
   }
+}
+
+.trending {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 </style>

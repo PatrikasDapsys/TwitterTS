@@ -35,5 +35,6 @@ import Widgets from "./components/Widgets.vue";
 }
 .widgets {
   flex: 0.3;
+  overflow-y: scroll;
 }
 </style>
