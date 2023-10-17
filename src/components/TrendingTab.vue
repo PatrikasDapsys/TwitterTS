@@ -10,7 +10,7 @@ defineProps({
       <div>
         {{ place }} &nbsp;<span class="dot">&#8226;</span>&nbsp; Trending
       </div>
-      <font-awesome-icon icon="fa-solid fa-ellipsis" />
+      <font-awesome-icon icon="fa-solid fa-ellipsis" class="icon" />
     </div>
     <div class="bottom">#{{ name }}</div>
   </div>
@@ -19,7 +19,7 @@ defineProps({
 <style lang="scss" scoped>
 .container {
   width: 100%;
-  padding: 12px 16px;
+  padding: 10px 16px 12px;
   transition: all 200ms ease;
   &:hover {
     background-color: #1d1f23;
@@ -36,6 +36,7 @@ defineProps({
   color: gray;
   font-size: 13px;
   margin-bottom: 2px;
+  height: 20px;
   :first-child {
     display: flex;
     align-items: center;
@@ -43,6 +44,18 @@ defineProps({
 }
 
 .bottom {
-    font-weight: 700;
+  font-weight: 700;
+}
+
+.fa-ellipsis {
+  cursor: pointer;
+  font-size: 18px;
+  padding: 8px;
+  border-radius: 100%;
+  transition: all 200ms ease;
+  &:hover {
+    color: var(--brandBlue);
+    background-color: rgba(#1d9bf0, 0.1);
+  }
 }
 </style>

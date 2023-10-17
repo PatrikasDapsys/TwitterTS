@@ -76,13 +76,14 @@ const trendingTabs = [
         handle="therealjohndoe"
         profileImg="https://pbs.twimg.com/profile_images/1683325380441128960/yRsRRjGO_400x400.jpg"
       />
-      <button>Show more</button>
+      <button class="showMore">Show more</button>
     </div>
     <div class="trending background--rounded">
       <strong class="title">Lithuania trends</strong>
       <div v-for="tab in trendingTabs" :key="tab.place" class="">
         <TrendingTab :place="tab.place" :name="tab.name" />
       </div>
+      <button class="showMore">Show more</button>
     </div>
   </section>
 </template>
@@ -101,6 +102,18 @@ section {
   font-size: 20px;
   font-weight: 800;
   padding: 12px 16px;
+}
+.showMore {
+  background: none;
+  text-align: left;
+  padding: 16px;
+  color: var(--brandBlue);
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 200ms ease;
+  &:hover {
+    background-color: #1d1f23;
+  }
 }
 
 .searchBar {
@@ -153,23 +166,12 @@ section {
   .title {
     padding: 12px 16px;
   }
-  button {
-    background: none;
-    text-align: left;
-    padding: 16px;
-    color: var(--brandBlue);
-    font-size: 15px;
-    cursor: pointer;
-    transition: all 200ms ease;
-    &:hover {
-      background-color: #1d1f23;
-    }
-  }
 }
 
 .trending {
   width: 100%;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 </style>
