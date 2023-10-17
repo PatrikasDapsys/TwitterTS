@@ -85,12 +85,25 @@ const trendingTabs = [
       </div>
       <button class="showMore">Show more</button>
     </div>
+    <nav class="copyright">
+      <div>Terms of Service</div>
+      <div>Privacy Policy</div>
+      <div>Cookie Policy</div>
+      <div>Accessibility</div>
+      <div>Ads Info</div>
+      <div>More <font-awesome-icon icon="fa-solid fa-ellipsis" /></div>
+      <div>&copy; 2023 X Corp.</div>
+    </nav>
   </section>
 </template>
 
 <style lang="scss" scoped>
 section {
   margin: 4px 0 0 24px;
+  padding-bottom: 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .background--rounded {
@@ -126,7 +139,6 @@ section {
   align-items: center;
   gap: 16px;
   color: gray;
-  margin-bottom: 16px;
   input {
     background-color: transparent;
     outline: none;
@@ -143,7 +155,6 @@ section {
   gap: 12px;
   font-weight: 700;
   font-size: 15px;
-  margin-bottom: 16px;
   button {
     width: fit-content;
     padding: 8px 16px;
@@ -162,7 +173,6 @@ section {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  margin-bottom: 16px;
   .title {
     padding: 12px 16px;
   }
@@ -173,5 +183,22 @@ section {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+}
+
+.copyright {
+  color: gray;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: left;
+  font-size: 13px;
+  div {
+    white-space: nowrap;
+    padding-right: 12px;
+    margin: 2px 0;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 </style>

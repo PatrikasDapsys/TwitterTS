@@ -10,7 +10,7 @@ defineProps({
       <div>
         {{ place }} &nbsp;<span class="dot">&#8226;</span>&nbsp; Trending
       </div>
-      <font-awesome-icon icon="fa-solid fa-ellipsis" class="icon" />
+      <font-awesome-icon icon="fa-solid fa-ellipsis"/>
     </div>
     <div class="bottom">#{{ name }}</div>
   </div>
