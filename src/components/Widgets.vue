@@ -1,6 +1,15 @@
 <script setup lang="ts">
 import FollowSuggestion from "./FollowSuggestion.vue";
 import TrendingTab from "./TrendingTab.vue";
+import { ref } from "vue";
+
+const searchBarText = ref<string>("");
+const searchInput = ref<HTMLElement | null>(null);
+
+function resetSearchBarText() {
+  searchBarText.value = "";
+  if (searchInput.value) searchInput.value.focus();
+}
 
 const trendingTabs = [
   {
@@ -47,9 +56,22 @@ const trendingTabs = [
 </script>
 <template>
   <section>
-    <div class="searchBar">
-      <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
-      <input type="text" placeholder="Search" maxlength="30" />
+    <div class="searchBar__container">
+      <div class="searchBar">
+        <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
+        <input
+          type="text"
+          placeholder="Search"
+          maxlength="30"
+          v-model="searchBarText"
+          ref="searchInput"
+        />
+        <font-awesome-icon
+          icon="fa-solid fa-circle-xmark"
+          v-show="searchBarText"
+          @click="resetSearchBarText"
+        />
+      </div>
     </div>
     <div class="premium background--rounded">
       <strong class="title"> Subscribe to premium </strong>
@@ -99,7 +121,7 @@ const trendingTabs = [
 
 <style lang="scss" scoped>
 section {
-  margin: 4px 0 0 24px;
+  margin-left: 24px;
   padding-bottom: 64px;
   display: flex;
   flex-direction: column;
@@ -129,6 +151,12 @@ section {
   }
 }
 
+.searchBar__container {
+  position: sticky;
+  top: 0;
+  background: var(--background-main);
+  padding: 4px 0;
+}
 .searchBar {
   background-color: var(--background-blue-main);
   width: 100%;
@@ -138,6 +166,7 @@ section {
   display: flex;
   align-items: center;
   gap: 16px;
+  border: 1px solid var(--background-blue-main);
   color: gray;
   input {
     background-color: transparent;
@@ -145,6 +174,26 @@ section {
     color: inherit;
     flex: 1;
     font-size: 14px;
+    color: white;
+  }
+  .fa-circle-xmark {
+    color: var(--brandBlue);
+    cursor: pointer;
+    position: absolute;
+    right: 12px;
+    padding: 4px;
+  }
+  &:focus-within {
+    background-color: var(--background-main);
+    border: 1px solid var(--brandBlue);
+    .fa-magnifying-glass {
+      color: var(--brandBlue);
+    }
+  }
+  &:not(:focus-within) {
+    .fa-circle-xmark {
+      opacity: 0;
+    }
   }
 }
 
