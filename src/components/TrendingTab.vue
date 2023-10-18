@@ -20,6 +20,7 @@ defineProps({
 .container {
   width: 100%;
   padding: 10px 16px 12px;
+  cursor: pointer;
   transition: all 200ms ease;
   &:hover {
     background-color: #1d1f23;
