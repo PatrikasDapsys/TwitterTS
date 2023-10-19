@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Post from "./Post.vue";
 import { ref } from "vue";
+import axios, { type AxiosResponse } from "axios";
 
 const text = ref<string>("");
 const username = ref<string>("");
@@ -8,6 +9,26 @@ const handle = ref<string>("");
 const profileImg = ref<string>("");
 const allowPost = ref<boolean>(false);
 
+type postType = {
+  id: number;
+  username: string;
+  handle: string;
+  profileImg: string;
+  text: string;
+  likes: number;
+  createdAt: number;
+};
+
+const posts = ref<postType[]>([]);
+
+async function fetchPost() {
+  const response: AxiosResponse<any> = await axios.get(
+    "http://localhost:3000/post"
+  );
+  const { data } = response;
+  posts.value = data;
+}
+fetchPost();
 function submitForm(event: Event) {
   event.preventDefault();
   text.value = "";
@@ -97,63 +118,15 @@ function handleAllowPost() {
       </div>
     </form>
     <main>
-      <Post
-        text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
-        incidunt ad possimus dolorem quas perferendis quae illum eum facere!
-        Officiis velit perspiciatis odit fugiat qui accusamus ad debitis
-        deserunt magnam.t"
-        username="johnDoe"
-        handle="@realJogh"
-        profileImg="https://thispersondoesnotexist.com/"
-      />
-      <Post
-        text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
-        incidunt ad possimus dolorem quas perferendis quae illum eum facere!
-        Officiis velit perspiciatis odit fugiat qui accusamus ad debitis
-        deserunt magnam.t"
-        username="johnDoe"
-        handle="@realJogh"
-        profileImg="https://thispersondoesnotexist.com/"
-      />
-      <Post
-        text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
-        incidunt ad possimus dolorem quas perferendis quae illum eum facere!
-        Officiis velit perspiciatis odit fugiat qui accusamus ad debitis
-        deserunt magnam.t"
-        username="johnDoe"
-        handle="@realJogh"
-        profileImg="https://thispersondoesnotexist.com/"
-      />
-      <Post
-        text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
-        incidunt ad possimus dolorem quas perferendis quae illum eum facere!
-        Officiis velit perspiciatis odit fugiat qui accusamus ad debitis
-        deserunt magnam.t"
-        username="johnDoe"
-        handle="@realJogh"
-        profileImg="https://thispersondoesnotexist.com/"
-      />
-      <Post
-        text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
-        incidunt ad possimus dolorem quas perferendis quae illum eum facere!
-        Officiis velit perspiciatis odit fugiat qui accusamus ad debitis
-        deserunt magnam.t"
-        username="johnDoe"
-        handle="@realJogh"
-        profileImg="https://thispersondoesnotexist.com/"
-      />
-      <Post
-        text="Lorem"
-        username="johnDoe"
-        handle="@realJogh"
-        profileImg="https://thispersondoesnotexist.com/"
-      />
-      <Post
-      text="hey"
-        username="johnDoe"
-        handle="@realJogh"
-        profileImg="https://thispersondoesnotexist.com/"
-      />
+      <div v-for="post in posts" :key="post.id">
+        <Post
+          :text="post.text"
+          :username="post.username"
+          :handle="post.handle"
+          :profileImg="post.profileImg"
+          :createdAt="post.createdAt"
+        />
+      </div>
     </main>
   </section>
 </template>

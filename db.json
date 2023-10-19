@@ -1,0 +1,13 @@
+{
+  "post": [
+    {
+      "id": 1,
+      "username": "Josh",
+      "handle": "realJosh",
+      "profileImg": "https://thispersondoesnotexist.com/",
+      "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae incidunt ad possimus dolorem quas perferendis quae illum eum facere! Officiis velit perspiciatis odit fugiat qui accusamus ad debitis deserunt magnam.t",
+      "likes": 0,
+      "createdAt": 1097706008496
+    }
+  ]
+}

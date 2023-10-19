@@ -1,10 +1,39 @@
 <script setup lang="ts">
+import { ref } from "vue";
 const props = defineProps({
   text: String,
   username: String,
   handle: String,
   profileImg: String,
+  createdAt: {
+    type: Number,
+    default: 0,
+  },
 });
+const whenCreated = ref<number | string>(props.createdAt || 0);
+const timeFormat = ref<string>("");
+function calcuteWhenCreated() {
+  const date = new Date(whenCreated.value);
+  const now = new Date();
+
+  const differenceInMilliseconds = now.getTime() - date.getTime();
+  const hoursPassed = Math.round(differenceInMilliseconds / (60 * 60 * 1000));
+  const minutesPassed = Math.round(differenceInMilliseconds / (60 * 1000));
+
+  if (hoursPassed > 24) {
+    const dateInDaysArray = date.toDateString().split(" ");
+    const dateInDays = dateInDaysArray[1] + " " + dateInDaysArray[2];
+    whenCreated.value = dateInDays;
+    timeFormat.value = "";
+  } else if (hoursPassed < 1) {
+    whenCreated.value = minutesPassed;
+    timeFormat.value = "m";
+  } else {
+    whenCreated.value = hoursPassed;
+    timeFormat.value = "h";
+  }
+}
+calcuteWhenCreated();
 </script>
 
 <template>
@@ -31,7 +60,7 @@ const props = defineProps({
             {{ handle }}
           </h1>
           <span class="dot"> &#8226;</span>
-          <span> 8h</span>
+          <span> {{ whenCreated }}{{ timeFormat }}</span>
         </div>
         <font-awesome-icon icon="fa-solid fa-ellipsis" />
       </div>
