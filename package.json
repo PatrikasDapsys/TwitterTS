@@ -8,7 +8,7 @@
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
-    "server": "json-server --watch db.json"
+    "server": "json-server --watch db.json --port 8080"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.2",

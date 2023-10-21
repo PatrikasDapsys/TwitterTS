@@ -1,13 +1,40 @@
 {
   "post": [
     {
-      "id": 1,
-      "username": "Josh",
-      "handle": "realJosh",
-      "profileImg": "https://thispersondoesnotexist.com/",
-      "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae incidunt ad possimus dolorem quas perferendis quae illum eum facere! Officiis velit perspiciatis odit fugiat qui accusamus ad debitis deserunt magnam.t",
+      "id": 40100765880,
+      "username": "User",
+      "handle": "dasda",
+      "profileImg": "https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg",
+      "text": "New Post????",
       "likes": 0,
-      "createdAt": 1097706008496
+      "createdAt": 1697900725848
+    },
+    {
+      "id": 26520508762,
+      "username": "joe",
+      "handle": "ral one",
+      "profileImg": "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?size=626&ext=jpg&ga=GA1.1.386372595.1697760000&semt=ais",
+      "text": "aghain!!!",
+      "likes": 0,
+      "createdAt": 1697900850043
+    },
+    {
+      "id": 22215866252,
+      "username": "mike",
+      "handle": "asdasdasd",
+      "profileImg": "",
+      "text": "Hello America!",
+      "likes": 0,
+      "createdAt": 1697903038674
+    },
+    {
+      "id": 54617290238,
+      "username": "person",
+      "handle": "realOne",
+      "profileImg": "https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg",
+      "text": "i am",
+      "likes": 0,
+      "createdAt": 1697903357879
     }
   ]
 }

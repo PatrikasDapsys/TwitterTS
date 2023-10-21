@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Post from "./Post.vue";
 import { ref } from "vue";
-import axios, { type AxiosResponse } from "axios";
+import axios, { type AxiosError, type AxiosResponse } from "axios";
 
 const text = ref<string>("");
 const username = ref<string>("");
@@ -22,21 +22,50 @@ type postType = {
 const posts = ref<postType[]>([]);
 
 async function fetchPost() {
-  const response: AxiosResponse<any> = await axios.get(
-    "http://localhost:3000/post"
-  );
-  const { data } = response;
-  posts.value = data;
+  try {
+    const response: AxiosResponse<any> = await axios.get(
+      "http://localhost:8080/post"
+    );
+    const { data } = response;
+    data.sort((a: any, b: any) => b.createdAt - a.createdAt);
+    console.log(data);
+    posts.value = data;
+  } catch (error: any) {
+    console.log(error.message);
+  }
 }
 fetchPost();
 function submitForm(event: Event) {
   event.preventDefault();
-  text.value = "";
-  username.value = "";
-  handle.value = "";
-  profileImg.value = "";
-  allowPost.value = false;
+  axios
+    .post("http://localhost:8080/post", {
+      id: createUniqueID(),
+      username: username.value,
+      handle: handle.value,
+      profileImg: profileImg.value,
+      text: text.value,
+      likes: 0,
+      createdAt: Date.now(),
+    })
+    .then(() => {
+      text.value = "";
+      username.value = "";
+      handle.value = "";
+      profileImg.value = "";
+      allowPost.value = false;
+      fetchPost();
+    })
+    .catch((error) => {
+      alert("Error adding post:" + error);
+    });
 }
+
+function createUniqueID() {
+  const id = Math.round(Math.random() * 100000000000);
+  console.log(id);
+  return id;
+}
+
 function handleAllowPost() {
   if (
     text.value.length !== 0 &&
@@ -89,7 +118,6 @@ function handleAllowPost() {
               <input
                 type="text"
                 placeholder="Profile Image Link"
-                maxlength="15"
                 @change="handleAllowPost"
                 v-model="profileImg"
               />

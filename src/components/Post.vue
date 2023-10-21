@@ -57,7 +57,7 @@ calcuteWhenCreated();
             />
           </figure>
           <h1 class="post__top--handle">
-            {{ handle }}
+            @{{ handle }}
           </h1>
           <span class="dot"> &#8226;</span>
           <span> {{ whenCreated }}{{ timeFormat }}</span>
@@ -108,6 +108,9 @@ calcuteWhenCreated();
     height: 40px;
     border-radius: 100%;
     overflow: hidden;
+    img {
+      aspect-ratio: 1/1;
+    }
   }
 }
 .dot {
