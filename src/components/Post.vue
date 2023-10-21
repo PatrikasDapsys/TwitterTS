@@ -4,6 +4,7 @@ const props = defineProps({
   text: String,
   username: String,
   handle: String,
+  likes: Number,
   profileImg: String,
   createdAt: {
     type: Number,
@@ -56,9 +57,7 @@ calcuteWhenCreated();
               alt=""
             />
           </figure>
-          <h1 class="post__top--handle">
-            @{{ handle }}
-          </h1>
+          <h1 class="post__top--handle">@{{ handle }}</h1>
           <span class="dot"> &#8226;</span>
           <span> {{ whenCreated }}{{ timeFormat }}</span>
         </div>
@@ -71,19 +70,16 @@ calcuteWhenCreated();
       <div class="post__bottom">
         <div>
           <font-awesome-icon icon="fa-regular fa-comment" />
-          <span>&nbsp;8</span>
         </div>
         <div>
           <font-awesome-icon icon="fa-solid fa-retweet" />
-          <span>&nbsp;8</span>
         </div>
         <div>
           <font-awesome-icon icon="fa-regular fa-heart" />
-          <span>&nbsp;8</span>
+          <span>&nbsp;{{ likes }}</span>
         </div>
         <div>
           <font-awesome-icon icon="fa-solid fa-chart-simple" />
-          <span>&nbsp;8</span>
         </div>
         <font-awesome-icon icon="fa-solid fa-arrow-up-from-bracket" />
       </div>
@@ -109,7 +105,7 @@ calcuteWhenCreated();
     border-radius: 100%;
     overflow: hidden;
     img {
-      aspect-ratio: 1/1;
+      object-fit: cover;
     }
   }
 }

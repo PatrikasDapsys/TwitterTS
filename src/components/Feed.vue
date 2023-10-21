@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import Post from "./Post.vue";
-import { ref } from "vue";
-import axios, { type AxiosError, type AxiosResponse } from "axios";
+import { ref, reactive } from "vue";
+import axios, { type AxiosResponse } from "axios";
 
 const text = ref<string>("");
 const username = ref<string>("");
 const handle = ref<string>("");
 const profileImg = ref<string>("");
 const allowPost = ref<boolean>(false);
+const postStatus = reactive(ref<string>(""));
 
 type postType = {
   id: number;
@@ -30,13 +31,22 @@ async function fetchPost() {
     data.sort((a: any, b: any) => b.createdAt - a.createdAt);
     console.log(data);
     posts.value = data;
+    postStatus.value = "ok";
   } catch (error: any) {
-    console.log(error.message);
+    if (error.code === "ERR_NETWORK") {
+      postStatus.value = "ERR_NETWORK";
+    } else {
+      alert(error);
+    }
+    console.error(error);
   }
 }
 fetchPost();
 function submitForm(event: Event) {
   event.preventDefault();
+  if (profileImg.value === "")
+    profileImg.value =
+      "https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png";
   axios
     .post("http://localhost:8080/post", {
       id: createUniqueID(),
@@ -55,14 +65,17 @@ function submitForm(event: Event) {
       allowPost.value = false;
       fetchPost();
     })
-    .catch((error) => {
-      alert("Error adding post:" + error);
+    .catch((error: any) => {
+      if (error.code === "ERR_NETWORK") {
+        alert("The server isn't online, run 'npm run server' ");
+      } else {
+        alert(error);
+      }
     });
 }
 
 function createUniqueID() {
   const id = Math.round(Math.random() * 100000000000);
-  console.log(id);
   return id;
 }
 
@@ -146,12 +159,17 @@ function handleAllowPost() {
       </div>
     </form>
     <main>
-      <div v-for="post in posts" :key="post.id">
+      <div v-if="postStatus === 'ERR_NETWORK'">
+        There seems to be some issues with the server. If you haven't started it
+        run "npm run server" in the console and refresh the page.
+      </div>
+      <div v-if="postStatus === 'ok'" v-for="post in posts" :key="post.id">
         <Post
           :text="post.text"
           :username="post.username"
           :handle="post.handle"
           :profileImg="post.profileImg"
+          :likes="post.likes"
           :createdAt="post.createdAt"
         />
       </div>
