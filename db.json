@@ -6,7 +6,7 @@
       "handle": "dasda",
       "profileImg": "https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg",
       "text": "New Post????",
-      "likes": 0,
+      "likes": 1,
       "createdAt": 1697900725848
     },
     {
@@ -15,7 +15,7 @@
       "handle": "ral one",
       "profileImg": "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?size=626&ext=jpg&ga=GA1.1.386372595.1697760000&semt=ais",
       "text": "aghain!!!",
-      "likes": 0,
+      "likes": 3,
       "createdAt": 1697900850043
     },
     {
@@ -24,7 +24,7 @@
       "handle": "realOne",
       "profileImg": "https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg",
       "text": "i am",
-      "likes": 0,
+      "likes": 1,
       "createdAt": 1697903357879
     },
     {
@@ -33,7 +33,7 @@
       "handle": "mikehock",
       "profileImg": "https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png",
       "text": "what is this",
-      "likes": 0,
+      "likes": 8,
       "createdAt": 1697907529605
     }
   ]

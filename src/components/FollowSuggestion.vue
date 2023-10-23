@@ -62,6 +62,7 @@ defineProps({
   margin-right: 8px;
 }
 button {
+  cursor: pointer;
   width: 78px;
   height: 32px;
   padding: 0 16px;

@@ -89,14 +89,14 @@ const trendingTabs = [
         profileImg="https://pbs.twimg.com/profile_images/1683325380441128960/yRsRRjGO_400x400.jpg"
       />
       <FollowSuggestion
-        username="John Doe"
-        handle="therealjohndoe"
-        profileImg="https://pbs.twimg.com/profile_images/1683325380441128960/yRsRRjGO_400x400.jpg"
+        username="Cristiano Ronaldo"
+        handle="Cristiano"
+        profileImg="https://pbs.twimg.com/profile_images/1594446880498401282/o4L2z8Ay_400x400.jpg"
       />
       <FollowSuggestion
-        username="John Doe"
-        handle="therealjohndoe"
-        profileImg="https://pbs.twimg.com/profile_images/1683325380441128960/yRsRRjGO_400x400.jpg"
+        username="LeBron James"
+        handle="KingJames"
+        profileImg="https://pbs.twimg.com/profile_images/1421530540063092736/xqtcu8HX_400x400.jpg"
       />
       <button class="showMore">Show more</button>
     </div>
@@ -206,6 +206,7 @@ section {
   font-size: 15px;
   button {
     width: fit-content;
+    cursor: pointer;
     padding: 8px 16px;
     border-radius: 16px;
     background-color: var(--brandBlue);

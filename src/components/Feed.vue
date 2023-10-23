@@ -29,7 +29,6 @@ async function fetchPost() {
     );
     const { data } = response;
     data.sort((a: any, b: any) => b.createdAt - a.createdAt);
-    console.log(data);
     posts.value = data;
     postStatus.value = "ok";
   } catch (error: any) {
@@ -44,9 +43,6 @@ async function fetchPost() {
 fetchPost();
 function submitForm(event: Event) {
   event.preventDefault();
-  if (profileImg.value === "")
-    profileImg.value =
-      "https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png";
   axios
     .post("http://localhost:8080/post", {
       id: createUniqueID(),
@@ -171,6 +167,7 @@ function handleAllowPost() {
           :profileImg="post.profileImg"
           :likes="post.likes"
           :createdAt="post.createdAt"
+          :id="post.id"
         />
       </div>
     </main>
