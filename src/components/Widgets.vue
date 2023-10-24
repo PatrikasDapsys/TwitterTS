@@ -56,7 +56,7 @@ const trendingTabs = [
 </script>
 <template>
   <section>
-    <div class="searchBar__container">
+    <div id="searchBar" class="searchBar__container">
       <div class="searchBar">
         <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
         <input

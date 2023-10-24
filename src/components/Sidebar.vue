@@ -1,5 +1,14 @@
 <script setup lang="ts">
 import tabRow from "./tabRow.vue";
+import CreatePostModal from "./CreatePostModal.vue";
+import { ref } from "vue";
+
+const isModalOpen = ref<boolean>(false);
+
+function toggleModal() {
+  isModalOpen.value = !isModalOpen.value;
+  console.log(isModalOpen.value);
+}
 
 const Tabs: {
   name: string;
@@ -73,10 +82,11 @@ const Tabs: {
         </li>
       </ul>
       <div class="postWrapper">
-        <button class="postButton">Post</button>
+        <button class="postButton" @click="toggleModal">Post</button>
       </div>
     </div>
   </section>
+  <CreatePostModal :isModalOpen="isModalOpen" />
 </template>
 
 <style lang="scss" scoped>

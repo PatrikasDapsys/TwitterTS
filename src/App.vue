@@ -16,12 +16,11 @@ import Widgets from "./components/Widgets.vue";
 .container {
   position: relative;
   max-width: 1300px;
-  min-height: 100vh;
   width: 100%;
   display: flex;
   justify-content: center;
   margin: 0 auto;
-  overflow: hidden;
+  overflow-y: hidden;
   max-height: 100vh;
 }
 .sidebar {
