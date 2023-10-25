@@ -3,11 +3,11 @@ import tabRow from "./tabRow.vue";
 import CreatePostModal from "./CreatePostModal.vue";
 import { ref } from "vue";
 
+defineEmits(["close-modal"]);
 const isModalOpen = ref<boolean>(false);
 
 function toggleModal() {
   isModalOpen.value = !isModalOpen.value;
-  console.log(isModalOpen.value);
 }
 
 const Tabs: {
@@ -86,7 +86,7 @@ const Tabs: {
       </div>
     </div>
   </section>
-  <CreatePostModal :isModalOpen="isModalOpen" />
+  <CreatePostModal :isModalOpen="isModalOpen" @close-modal="toggleModal" />
 </template>
 
 <style lang="scss" scoped>

@@ -147,10 +147,7 @@ function likeClicked() {
 }
 
 .verified {
-  width: 16px;
-  display: flex;
-  align-items: center;
-  margin: 0 8px 0 4px;
+  margin-right: 4px;
 }
 
 .post__text {
@@ -207,13 +204,13 @@ function likeClicked() {
   .likes {
     display: flex;
     align-items: center;
-    .fa-heart{
+    .fa-heart {
       padding: 8px;
       border-radius: 100%;
     }
     &:hover {
       color: #e81777;
-      .fa-heart{
+      .fa-heart {
         background-color: rgba(#e81777, 0.1);
       }
     }

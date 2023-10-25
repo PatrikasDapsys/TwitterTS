@@ -71,13 +71,6 @@ button {
   border-radius: 9999px;
 }
 
-.verified {
-  width: 16px;
-  display: flex;
-  align-items: center;
-  margin-left: 4px;
-}
-
 .username {
   display: flex;
   font-weight: 700;
