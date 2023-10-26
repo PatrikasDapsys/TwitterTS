@@ -37,7 +37,16 @@ if (bodyElement) {
     }
   );
 }
+
+const textareaResize = () => {
+  const textarea: HTMLTextAreaElement | null =
+    document.querySelector("textarea");
+  if (!textarea) return;
+  textarea.style.height = "auto";
+  textarea.style.height = textarea.scrollHeight + "px";
+};
 </script>
+
 <template>
   <div class="backdrop" v-if="isModalOpen">
     <section class="container">
@@ -56,12 +65,26 @@ if (bodyElement) {
         </div>
         <div class="middle__rigth">
           <div class="middle__rigthTop">
-            <div value="">Everyone</div>
+            <div>
+              Everyone &nbsp;
+              <font-awesome-icon icon="fa-solid fa-chevron-down" />
+            </div>
           </div>
           <div class="middle__rigthBottom">
-            <textarea cols="30" rows="10" placeholder="What is happening?!"></textarea>
+            <textarea
+              placeholder="What is happening?!"
+              maxlength="270"
+              @input="textareaResize"
+            ></textarea>
           </div>
         </div>
+      </div>
+      <div class="bottom">
+        <div class="bottom__top">
+          <font-awesome-icon icon="fa-solid fa-earth-americas" />
+          &nbsp;Everyone can reply
+        </div>
+        <div class="bottom__bottom">sdas</div>
       </div>
     </section>
   </div>
@@ -81,6 +104,7 @@ if (bodyElement) {
 .container {
   background-color: var(--background-main);
   width: 576px;
+  height: auto;
   padding: 0px 16px;
   border-radius: 16px;
   margin: 0 auto;
@@ -120,7 +144,6 @@ if (bodyElement) {
 }
 
 .middle {
-  height: 160px;
   display: flex;
   .middle__left {
     height: 100%;
@@ -131,6 +154,54 @@ if (bodyElement) {
       margin: 12px 12px 0 0;
       overflow: hidden;
     }
+  }
+  .middle__rigth {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    .middle__rigthTop {
+      color: var(--brandBlue);
+      padding: 4px 0 12px 0;
+      div {
+        display: flex;
+        align-items: center;
+        width: fit-content;
+        font-size: 14px;
+        font-weight: 700;
+        height: 22px;
+        border: 1px solid rgb(83, 100, 113);
+        border-radius: 18px;
+        padding: 0 12px;
+        cursor: pointer;
+        transition: all 200ms ease;
+        &:hover {
+          background-color: rgba(#1d9bf0, 0.1);
+        }
+      }
+    }
+    .middle__rigthBottom {
+      textarea {
+        min-height: 96px;
+        width: 100%;
+        background: transparent;
+        margin: 12px 0;
+        color: #fff;
+        font-size: 20px;
+        outline: none;
+        resize: none;
+        overflow-y: hidden;
+      }
+    }
+  }
+}
+
+.bottom {
+  .bottom__top {
+    color: var(--brandBlue);
+    font-weight: 700;
+    font-size: 14px;
+    padding: 0 12px 12px 12px;
+    border-bottom: 1px solid rgb(47, 51, 54);
   }
 }
 </style>
