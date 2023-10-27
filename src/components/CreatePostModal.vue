@@ -1,5 +1,13 @@
 <script setup lang="ts">
+import axios from "axios";
+import { ref, reactive } from "vue";
 import { watch } from "vue";
+
+const text = ref<string>("");
+const username = ref<string>("");
+const handle = ref<string>("");
+const profileImg = ref<string>("");
+const allowPost = reactive(ref<boolean>(false));
 
 const props = defineProps({
   isModalOpen: {
@@ -8,6 +16,59 @@ const props = defineProps({
   },
 });
 
+//Create Post
+function createPost(event: Event) {
+  event.preventDefault();
+  axios
+    .post("http://localhost:8080/post", {
+      id: createUniqueID(),
+      username: username.value,
+      handle: handle.value,
+      profileImg: profileImg.value,
+      text: text.value,
+      likes: 0,
+      createdAt: Date.now(),
+    })
+    .then(() => {
+      text.value = "";
+      username.value = "";
+      handle.value = "";
+      profileImg.value = "";
+    })
+    .catch((error: any) => {
+      if (error.code === "ERR_NETWORK") {
+        alert("The server isn't online, run 'npm run server' ");
+      } else {
+        alert(error);
+      }
+    });
+}
+
+watch(
+  [text, username, handle],
+  ([newText, newUsername, newHandle]) => {
+    allowPost.value =
+      newText.length !== 0 &&
+      newUsername.length !== 0 &&
+      newHandle.length !== 0;
+  },
+  { immediate: true }
+);
+
+function createUniqueID() {
+  const id = Math.round(Math.random() * 100000000000);
+  return id;
+}
+
+//Modal size
+const textareaResize = () => {
+  const textarea: HTMLTextAreaElement | null =
+    document.querySelector("textarea");
+  if (!textarea) return;
+  textarea.style.height = "auto";
+  textarea.style.height = textarea.scrollHeight + "px";
+};
+//Modal backdrop below
 const bodyElement: HTMLBodyElement | null = document.querySelector("body");
 setTimeout(() => {
   const searchBar = document.getElementById("searchBar");
@@ -37,14 +98,6 @@ if (bodyElement) {
     }
   );
 }
-
-const textareaResize = () => {
-  const textarea: HTMLTextAreaElement | null =
-    document.querySelector("textarea");
-  if (!textarea) return;
-  textarea.style.height = "auto";
-  textarea.style.height = textarea.scrollHeight + "px";
-};
 </script>
 
 <template>
@@ -54,38 +107,72 @@ const textareaResize = () => {
         <font-awesome-icon icon="fa-solid fa-x" @click="$emit('close-modal')" />
         <button class="button__drafts">Drafts</button>
       </div>
-      <div class="middle">
-        <div class="middle__left">
-          <figure>
-            <img
-              src="https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png"
-              alt="profile image"
-            />
-          </figure>
-        </div>
-        <div class="middle__rigth">
-          <div class="middle__rigthTop">
-            <div>
-              Everyone &nbsp;
-              <font-awesome-icon icon="fa-solid fa-chevron-down" />
+      <form @submit="createPost">
+        <div class="middle">
+          <div class="middle__left">
+            <figure>
+              <img
+                src="https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png"
+                alt="profile image"
+              />
+            </figure>
+          </div>
+          <div class="middle__rigth">
+            <div class="middle__rigthTop">
+              <div>
+                Everyone &nbsp;
+                <font-awesome-icon icon="fa-solid fa-chevron-down" />
+              </div>
+            </div>
+            <div class="middle__rigthBottom">
+              <div class="usernames">
+                <input
+                  type="text"
+                  required
+                  placeholder="Username"
+                  maxlength="15"
+                  v-model="username"
+                />
+                <input
+                  type="text"
+                  required
+                  placeholder="Handle"
+                  maxlength="15"
+                  v-model="handle"
+                />
+                <input
+                  type="text"
+                  placeholder="Profile Img"
+                  v-model="profileImg"
+                />
+              </div>
+              <textarea
+                placeholder="What is happening?!"
+                maxlength="270"
+                @input="textareaResize"
+                v-model="text"
+              ></textarea>
             </div>
           </div>
-          <div class="middle__rigthBottom">
-            <textarea
-              placeholder="What is happening?!"
-              maxlength="270"
-              @input="textareaResize"
-            ></textarea>
+        </div>
+        <div class="bottom">
+          <div class="bottom__top">
+            <font-awesome-icon icon="fa-solid fa-earth-americas" />
+            &nbsp;Everyone can reply
+          </div>
+          <div class="bottom__bottom">
+            <div class="bottum__options">
+              <font-awesome-icon icon="fa-regular fa-image" />
+              <font-awesome-icon icon="fa-regular fa-square" />
+              <font-awesome-icon icon="fa-solid fa-pause" />
+              <font-awesome-icon icon="fa-regular fa-face-smile" />
+              <font-awesome-icon icon="fa-regular fa-calendar" />
+              <font-awesome-icon icon="fa-solid fa-location-dot" />
+            </div>
+            <button type="submit" :disabled="!allowPost">Post</button>
           </div>
         </div>
-      </div>
-      <div class="bottom">
-        <div class="bottom__top">
-          <font-awesome-icon icon="fa-solid fa-earth-americas" />
-          &nbsp;Everyone can reply
-        </div>
-        <div class="bottom__bottom">sdas</div>
-      </div>
+      </form>
     </section>
   </div>
 </template>
@@ -180,6 +267,13 @@ const textareaResize = () => {
       }
     }
     .middle__rigthBottom {
+      .usernames {
+        input {
+          background: transparent;
+          color: white;
+          outline: none;
+        }
+      }
       textarea {
         min-height: 96px;
         width: 100%;
@@ -202,6 +296,51 @@ const textareaResize = () => {
     font-size: 14px;
     padding: 0 12px 12px 12px;
     border-bottom: 1px solid rgb(47, 51, 54);
+  }
+  .bottom__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0 8px;
+    .bottum__options {
+      display: flex;
+      align-items: center;
+      color: var(--brandBlue);
+      gap: 4px;
+      .fa-pause {
+        transform: rotate(90deg);
+      }
+      > * {
+        transition: all 200ms ease;
+        padding: 10px;
+        border-radius: 100%;
+        aspect-ratio: 1/1;
+        cursor: pointer;
+        &:hover {
+          background-color: rgba(#1d9bf0, 0.1);
+        }
+      }
+    }
+    button {
+      font-size: 15px;
+      color: var(--text-main);
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 9999px;
+      background-color: var(--brandBlue);
+      transition: all 200ms ease;
+      cursor: pointer;
+      &:hover {
+        filter: brightness(0.85);
+      }
+      &:not(:disabled):active {
+        transform: scale(0.9);
+      }
+      &:disabled {
+        cursor: default;
+        filter: brightness(0.6);
+      }
+    }
   }
 }
 </style>
