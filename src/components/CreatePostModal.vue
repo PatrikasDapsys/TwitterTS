@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import CharacterCountCircle from "./CharacterCountCircle.vue";
 import axios from "axios";
 import { ref, reactive } from "vue";
 import { watch } from "vue";
@@ -9,6 +10,7 @@ const handle = ref<string>("");
 const profileImg = ref<string>("");
 const allowPost = reactive(ref<boolean>(false));
 
+const emit = defineEmits();
 const props = defineProps({
   isModalOpen: {
     type: Boolean,
@@ -34,6 +36,7 @@ function createPost(event: Event) {
       username.value = "";
       handle.value = "";
       profileImg.value = "";
+      emit("close-modal");
     })
     .catch((error: any) => {
       if (error.code === "ERR_NETWORK") {
@@ -169,7 +172,10 @@ if (bodyElement) {
               <font-awesome-icon icon="fa-regular fa-calendar" />
               <font-awesome-icon icon="fa-solid fa-location-dot" />
             </div>
-            <button type="submit" :disabled="!allowPost">Post</button>
+            <div class="bottom__post">
+              <CharacterCountCircle :characterCount="text.length" />
+              <button type="submit" :disabled="!allowPost">Post</button>
+            </div>
           </div>
         </div>
       </form>
@@ -321,24 +327,29 @@ if (bodyElement) {
         }
       }
     }
-    button {
-      font-size: 15px;
-      color: var(--text-main);
-      font-weight: 700;
-      padding: 8px 16px;
-      border-radius: 9999px;
-      background-color: var(--brandBlue);
-      transition: all 200ms ease;
-      cursor: pointer;
-      &:hover {
-        filter: brightness(0.85);
-      }
-      &:not(:disabled):active {
-        transform: scale(0.9);
-      }
-      &:disabled {
-        cursor: default;
-        filter: brightness(0.6);
+    .bottom__post {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      button {
+        font-size: 15px;
+        color: var(--text-main);
+        font-weight: 700;
+        padding: 8px 16px;
+        border-radius: 9999px;
+        background-color: var(--brandBlue);
+        transition: all 200ms ease;
+        cursor: pointer;
+        &:hover {
+          filter: brightness(0.85);
+        }
+        &:not(:disabled):active {
+          transform: scale(0.9);
+        }
+        &:disabled {
+          cursor: default;
+          filter: brightness(0.6);
+        }
       }
     }
   }
