@@ -173,7 +173,11 @@ if (bodyElement) {
               <font-awesome-icon icon="fa-solid fa-location-dot" />
             </div>
             <div class="bottom__post">
-              <CharacterCountCircle :characterCount="text.length" />
+              <CharacterCountCircle
+                v-if="text"
+                :characterCount="text.length"
+                :maxLength="270"
+              />
               <button type="submit" :disabled="!allowPost">Post</button>
             </div>
           </div>
