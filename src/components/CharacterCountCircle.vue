@@ -18,11 +18,26 @@ watch(
     const circle: HTMLElement | null = document.getElementById("circle");
     const innerCircle: HTMLElement | null =
       document.getElementById("innerCircle");
+
     const percentageOfColoredCircle: number = Math.round(
       props.characterCount / 2.7
     );
+    //characterCount over Maxlength
+    if (props.characterCount > props.maxLength - 1) { 
 
-    if (props.characterCount > props.maxLength - 21) {
+      if (innerCircle && circle) {
+        innerCircle.innerHTML = (
+          props.maxLength - props.characterCount
+        ).toString();
+        circle.style.background = `conic-gradient(
+          #e8232b ${percentageOfColoredCircle}%,
+          var(--background-secondary) ${percentageOfColoredCircle}%
+          )`;
+        circle.classList.add("scaleUp");
+        innerCircle.classList.add("redText");
+      }
+      //characterCount 20 under maxlength
+    } else if (props.characterCount > props.maxLength - 21) {
       if (innerCircle && circle) {
         innerCircle.innerHTML = (
           props.maxLength - props.characterCount
@@ -32,7 +47,9 @@ watch(
           var(--background-secondary) ${percentageOfColoredCircle}%
           )`;
         circle.classList.add("scaleUp");
+        innerCircle.classList.remove("redText");
       }
+      //characterCount less than: maxlength - 20 
     } else if (circle && innerCircle) {
       innerCircle.innerHTML = "";
       circle.style.background = `conic-gradient(
@@ -40,7 +57,9 @@ watch(
         var(--background-secondary) ${percentageOfColoredCircle}%
         )`;
       circle.classList.remove("scaleUp");
+      innerCircle.classList.remove("redText");
     }
+
   }
 );
 </script>
@@ -77,5 +96,9 @@ watch(
 
 .scaleUp {
   transform: scale(1.2);
+}
+
+.redText {
+  color: red;
 }
 </style>

@@ -47,11 +47,13 @@ function createPost(event: Event) {
     });
 }
 
+//Allow post
 watch(
   [text, username, handle],
   ([newText, newUsername, newHandle]) => {
     allowPost.value =
       newText.length !== 0 &&
+      newText.length < 271 &&
       newUsername.length !== 0 &&
       newHandle.length !== 0;
   },
@@ -151,9 +153,9 @@ if (bodyElement) {
               </div>
               <textarea
                 placeholder="What is happening?!"
-                maxlength="270"
                 @input="textareaResize"
                 v-model="text"
+                maxlength="1269"
               ></textarea>
             </div>
           </div>
@@ -286,6 +288,8 @@ if (bodyElement) {
       }
       textarea {
         min-height: 96px;
+        max-height: 500px;
+        overflow-y: scroll;
         width: 100%;
         background: transparent;
         margin: 12px 0;
@@ -293,7 +297,32 @@ if (bodyElement) {
         font-size: 20px;
         outline: none;
         resize: none;
-        overflow-y: hidden;
+        &::-webkit-scrollbar {
+          display: block;
+          width: 12px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: rgba(255, 255, 255, 0.5); /* Color of the thumb */
+          border-radius: 6px; /* Round the thumb */
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+          background-color: rgba(
+            255,
+            255,
+            255,
+            0.7
+          ); /* Hover color of the thumb */
+        }
+
+        &::-webkit-scrollbar-track {
+          background: rgba(0, 0, 0, 0.2); /* Color of the track */
+        }
+
+        &::-webkit-scrollbar-track:hover {
+          background: rgba(0, 0, 0, 0.3); /* Hover color of the track */
+        }
       }
     }
   }
