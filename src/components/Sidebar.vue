@@ -86,7 +86,9 @@ const Tabs: {
       </div>
     </div>
   </section>
-  <CreatePostModal :isModalOpen="isModalOpen" @close-modal="toggleModal" />
+  <Teleport to="body">
+    <CreatePostModal :isModalOpen="isModalOpen" @close-modal="toggleModal" />
+  </Teleport>
 </template>
 
 <style lang="scss" scoped>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Post from "./Post.vue";
-import { ref, reactive } from "vue";
+import { ref, reactive, watch } from "vue";
 import axios, { type AxiosResponse } from "axios";
 
 const text = ref<string>("");
@@ -75,17 +75,27 @@ function createUniqueID() {
   return id;
 }
 
-function handleAllowPost() {
-  if (
-    text.value.length !== 0 &&
-    username.value.length !== 0 &&
-    handle.value.length !== 0
-  ) {
-    allowPost.value = true;
-  } else {
-    allowPost.value = false;
-  }
-}
+//Allow Post
+watch(
+  [text, username, handle],
+  ([newText, newUsername, newHandle]) => {
+    allowPost.value =
+      newText.length !== 0 &&
+      newText.length < 271 &&
+      newUsername.length !== 0 &&
+      newHandle.length !== 0;
+  },
+  { immediate: true }
+);
+//Extend textarea
+const textareaResize = () => {
+  const textarea: HTMLTextAreaElement | null =
+    document.querySelector("textarea");
+  if (!textarea) return;
+  console.log(textarea);
+  textarea.style.height = "auto";
+  textarea.style.height = textarea.scrollHeight + "px";
+};
 </script>
 
 <template>
@@ -112,7 +122,6 @@ function handleAllowPost() {
                 type="text"
                 placeholder="Username"
                 maxlength="15"
-                @change="handleAllowPost"
                 v-model="username"
                 required
               />
@@ -120,14 +129,12 @@ function handleAllowPost() {
                 type="text"
                 placeholder="Handle"
                 maxlength="15"
-                @change="handleAllowPost"
                 required
                 v-model="handle"
               />
               <input
                 type="text"
                 placeholder="Profile Image Link"
-                @change="handleAllowPost"
                 v-model="profileImg"
               />
             </div>
@@ -135,8 +142,8 @@ function handleAllowPost() {
               type="text"
               placeholder="What is happening?!"
               maxlength="200"
+              @input="textareaResize"
               v-model="text"
-              @change="handleAllowPost"
               required
             />
           </div>
@@ -224,8 +231,6 @@ header {
 }
 
 .createPost {
-  min-height: 116px;
-  height: fit-content;
   width: 100%;
   border-bottom: 1px solid var(--border-main);
   padding: 16px;
@@ -241,32 +246,31 @@ header {
       margin-right: 16px;
     }
     .inputs {
-      display: flex;
+      /* display: flex; */
       flex-direction: column;
       flex: 1;
       .usernames {
         display: flex;
         font-size: 12px;
       }
-    }
 
-    input,
-    textarea {
-      color: var(--text-main);
-      flex: 1;
-      background: none;
-      outline: none;
-      /* font-size: 20px; */
-      resize: none;
-      &::placeholder {
-        color: gray;
+      input,
+      textarea {
+        color: var(--text-main);
+        flex: 1;
+        background: none;
+        outline: none;
+        resize: none;
+        &::placeholder {
+          color: gray;
+        }
       }
-    }
-    textarea {
-      margin-top: 8px;
-      font-size: 20px;
-      /* width: 100%; */
-      flex: 1;
+      textarea {
+        margin-top: 8px;
+        font-size: 20px;
+        width: 100%;
+        overflow-y: scroll;
+      }
     }
   }
   .createPost__bottom {
