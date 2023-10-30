@@ -43,7 +43,6 @@ function calcuteWhenCreated() {
   }
 }
 calcuteWhenCreated();
-
 function likeClicked() {
   if (hasLikedBeenClicked.value === true) {
     totalLikes.value -= 1;
