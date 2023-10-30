@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 import axios from "axios";
+import CharacterCountCircleVue from "./CharacterCountCircle.vue";
+import { createUniqueID } from "./utils";
 
 const emit = defineEmits();
 
@@ -9,6 +11,7 @@ const username = ref<string>("");
 const handle = ref<string>("");
 const profileImg = ref<string>("");
 const allowPost = ref<boolean>(false);
+const hasBeenActivated = ref<boolean>(false);
 
 //Create Post
 function submitForm(event: Event) {
@@ -41,11 +44,6 @@ function submitForm(event: Event) {
         alert(error);
       }
     });
-}
-
-function createUniqueID() {
-  const id = Math.round(Math.random() * 100000000000);
-  return id;
 }
 
 //Allow Post
@@ -87,32 +85,36 @@ const textareaResize = () => {
               placeholder="Username"
               maxlength="15"
               v-model="username"
+              @click="hasBeenActivated = true"
               required
             />
             <input
               type="text"
               placeholder="Handle"
               maxlength="15"
-              required
               v-model="handle"
+              @click="hasBeenActivated = true"
+              required
             />
             <input
               type="text"
               placeholder="Profile Image Link"
               v-model="profileImg"
+              @click="hasBeenActivated = true"
             />
           </div>
           <textarea
             type="text"
             placeholder="What is happening?!"
-            maxlength="200"
+            maxlength="1199"
             @input="textareaResize"
             v-model="text"
+            @click="hasBeenActivated = true"
             required
           />
         </div>
       </div>
-      <div class="createPost__bottom">
+      <div :class="['createPost__bottom', hasBeenActivated ? 'borderTop' : '']">
         <div class="createPost__options">
           <font-awesome-icon icon="fa-regular fa-image" />
           <font-awesome-icon icon="fa-regular fa-square" />
@@ -121,13 +123,25 @@ const textareaResize = () => {
           <font-awesome-icon icon="fa-regular fa-calendar" />
           <font-awesome-icon icon="fa-solid fa-location-dot" />
         </div>
-        <button type="submit" :disabled="!allowPost">Post</button>
+        <div class="post__button">
+          <CharacterCountCircleVue
+            v-if="text"
+            :characterCount="text.length"
+            :maxLength="200"
+            :id="createUniqueID()"
+          />
+          <button type="submit" :disabled="!allowPost">Post</button>
+        </div>
       </div>
     </div>
   </form>
 </template>
 
 <style lang="scss" scoped>
+.borderTop {
+  border-top: 1px solid var(--border-main);
+  padding-top: 4px;
+}
 .createPost {
   width: 100%;
   border-bottom: 1px solid var(--border-main);
@@ -196,23 +210,27 @@ const textareaResize = () => {
         }
       }
     }
-    button {
-      padding: 8px 16px;
-      border-radius: 9999px;
-      background-color: var(--brandBlue);
-      color: var(--text-main);
-      font-weight: 700;
-      transition: all 200ms ease;
-      cursor: pointer;
-      &:hover {
-        filter: brightness(0.85);
-      }
-      &:not(:disabled):active {
-        transform: scale(0.9);
-      }
-      &:disabled {
-        cursor: default;
-        filter: brightness(0.6);
+    .post__button {
+      display: flex;
+      gap: 18px;
+      button {
+        padding: 8px 16px;
+        border-radius: 9999px;
+        background-color: var(--brandBlue);
+        color: var(--text-main);
+        font-weight: 700;
+        transition: all 200ms ease;
+        cursor: pointer;
+        &:hover {
+          filter: brightness(0.85);
+        }
+        &:not(:disabled):active {
+          transform: scale(0.9);
+        }
+        &:disabled {
+          cursor: default;
+          filter: brightness(0.6);
+        }
       }
     }
   }

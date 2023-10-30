@@ -10,21 +10,28 @@ const props = defineProps({
     type: Number,
     default: 270,
   },
+  id: {
+    type: Number,
+    required: true,
+  },
 });
 
 watch(
   () => props.characterCount,
   () => {
-    const circle: HTMLElement | null = document.getElementById("circle");
-    const innerCircle: HTMLElement | null =
-      document.getElementById("innerCircle");
+    const circle: HTMLElement | null = document.getElementById(
+      `circle${props.id}`
+    );
+    const innerCircle: HTMLElement | null = document.getElementById(
+      `innerCircle${props.id}`
+    );
 
     const percentageOfColoredCircle: number = Math.round(
-      props.characterCount / 2.7
+      props.characterCount / (props.maxLength / 100)
     );
+    console.log(percentageOfColoredCircle);
     //characterCount over Maxlength
-    if (props.characterCount > props.maxLength - 1) { 
-
+    if (props.characterCount > props.maxLength - 1) {
       if (innerCircle && circle) {
         innerCircle.innerHTML = (
           props.maxLength - props.characterCount
@@ -49,7 +56,7 @@ watch(
         circle.classList.add("scaleUp");
         innerCircle.classList.remove("redText");
       }
-      //characterCount less than: maxlength - 20 
+      //characterCount less than: maxlength - 20
     } else if (circle && innerCircle) {
       innerCircle.innerHTML = "";
       circle.style.background = `conic-gradient(
@@ -59,21 +66,20 @@ watch(
       circle.classList.remove("scaleUp");
       innerCircle.classList.remove("redText");
     }
-
   }
 );
 </script>
 
 <template>
-  <div class="outer" id="circle">
-    <div class="inner" id="innerCircle"></div>
+  <div class="outer" :id="`circle${id}`">
+    <div class="inner" :id="`innerCircle${id}`"></div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .outer {
   width: 30px;
-  aspect-ratio: 1;
+  height: 30px;
   background: conic-gradient(
     var(--brandBlue) 1%,
     var(--background-secondary) 1%

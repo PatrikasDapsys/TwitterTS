@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import CharacterCountCircle from "./CharacterCountCircle.vue";
+import { createUniqueID } from "./utils";
 import axios from "axios";
 import { ref, reactive } from "vue";
 import { watch } from "vue";
@@ -59,11 +60,6 @@ watch(
   },
   { immediate: true }
 );
-
-function createUniqueID() {
-  const id = Math.round(Math.random() * 100000000000);
-  return id;
-}
 
 //Modal size
 const textareaResize = () => {
@@ -179,6 +175,7 @@ if (bodyElement) {
                 v-if="text"
                 :characterCount="text.length"
                 :maxLength="270"
+                :id="createUniqueID()"
               />
               <button type="submit" :disabled="!allowPost">Post</button>
             </div>
