@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import axios from "axios";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 const props = defineProps({
   text: String,
   username: String,
@@ -25,13 +25,17 @@ function calcuteWhenCreated() {
   const date = new Date(whenCreated.value);
   const now = new Date();
 
-  const differenceInMilliseconds = now.getTime() - date.getTime();
-  const hoursPassed = Math.round(differenceInMilliseconds / (60 * 60 * 1000));
-  const minutesPassed = Math.round(differenceInMilliseconds / (60 * 1000));
+  const differenceInMilliseconds: number = now.getTime() - date.getTime();
+  const hoursPassed: number = Math.round(
+    differenceInMilliseconds / (60 * 60 * 1000)
+  );
+  const minutesPassed: number = Math.round(
+    differenceInMilliseconds / (60 * 1000)
+  );
 
   if (hoursPassed > 24) {
-    const dateInDaysArray = date.toDateString().split(" ");
-    const dateInDays = dateInDaysArray[1] + " " + dateInDaysArray[2];
+    const dateInDaysArray: string[] = date.toDateString().split(" ");
+    const dateInDays: string = dateInDaysArray[1] + " " + dateInDaysArray[2];
     whenCreated.value = dateInDays;
     timeFormat.value = "";
   } else if (hoursPassed < 1) {
@@ -42,7 +46,6 @@ function calcuteWhenCreated() {
     timeFormat.value = "h";
   }
 }
-calcuteWhenCreated();
 function likeClicked() {
   if (hasLikedBeenClicked.value === true) {
     totalLikes.value -= 1;
@@ -54,6 +57,10 @@ function likeClicked() {
   });
   hasLikedBeenClicked.value = !hasLikedBeenClicked.value;
 }
+
+onMounted(() => {
+  calcuteWhenCreated();
+});
 </script>
 
 <template>

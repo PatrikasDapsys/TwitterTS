@@ -9,6 +9,8 @@ const username = ref<string>("");
 const handle = ref<string>("");
 const profileImg = ref<string>("");
 const allowPost = ref<boolean>(false);
+
+//Create Post
 function submitForm(event: Event) {
   event.preventDefault();
   axios

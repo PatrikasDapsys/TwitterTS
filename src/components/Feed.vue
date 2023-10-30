@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import Post from "./Post.vue";
-import { ref, reactive, watch } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import axios, { type AxiosResponse } from "axios";
 import FeedCreatePost from "./FeedCreatePost.vue";
 
+defineEmits(["reload-post"]);
 const postStatus = reactive(ref<string>(""));
 
 type postType = {
@@ -36,7 +37,10 @@ async function fetchPost() {
     console.error(error);
   }
 }
-fetchPost();
+
+onMounted(() => {
+  fetchPost();
+});
 </script>
 
 <template>
