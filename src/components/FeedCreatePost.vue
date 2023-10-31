@@ -16,6 +16,10 @@ const CharacterCountCircleID: number = createUniqueID();
 
 //Create Post
 function submitForm(event: Event) {
+  if (!areCharactersValid()) {
+    alert("Please use valid characters(Aa-Zz;0-9) and try again.");
+    return;
+  }
   event.preventDefault();
   axios
     .post("http://localhost:8080/post", {
@@ -59,6 +63,11 @@ watch(
   },
   { immediate: true }
 );
+
+function areCharactersValid() {
+  const pattern = /^[a-zA-Z0-9]+$/; //Contains only aA-zZ and 0-9
+  return pattern.test(username.value) && pattern.test(handle.value);
+}
 //Extend textarea
 const textareaResize = () => {
   const textarea: HTMLTextAreaElement | null =
