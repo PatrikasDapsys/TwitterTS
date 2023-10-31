@@ -2,7 +2,7 @@
 import { ref, watch } from "vue";
 import axios from "axios";
 import CharacterCountCircleVue from "./CharacterCountCircle.vue";
-import { createUniqueID } from "./utils";
+import { createUniqueID, areCharactersValid } from "./utils";
 
 const emit = defineEmits();
 
@@ -16,7 +16,7 @@ const CharacterCountCircleID: number = createUniqueID();
 
 //Create Post
 function submitForm(event: Event) {
-  if (!areCharactersValid()) {
+  if (!areCharactersValid(username.value, handle.value)) {
     alert("Please use valid characters(Aa-Zz;0-9) and try again.");
     return;
   }
@@ -64,10 +64,6 @@ watch(
   { immediate: true }
 );
 
-function areCharactersValid() {
-  const pattern = /^[a-zA-Z0-9]+$/; //Contains only aA-zZ and 0-9
-  return pattern.test(username.value) && pattern.test(handle.value);
-}
 //Extend textarea
 const textareaResize = () => {
   const textarea: HTMLTextAreaElement | null =

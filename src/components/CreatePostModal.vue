@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import CharacterCountCircle from "./CharacterCountCircle.vue";
-import { createUniqueID } from "./utils";
+import { createUniqueID, areCharactersValid } from "./utils";
 import axios from "axios";
 import { ref, reactive } from "vue";
 import { watch } from "vue";
@@ -22,6 +22,10 @@ const props = defineProps({
 
 //Create Post
 function createPost(event: Event) {
+  if (!areCharactersValid(username.value, handle.value)) {
+    alert("Please use valid characters(Aa-Zz;0-9) and try again.");
+    return;
+  }
   event.preventDefault();
   axios
     .post("http://localhost:8080/post", {
