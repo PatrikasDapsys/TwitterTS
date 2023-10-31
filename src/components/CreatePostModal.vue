@@ -2,7 +2,7 @@
 import CharacterCountCircle from "./CharacterCountCircle.vue";
 import { createUniqueID, areCharactersValid } from "./utils";
 import axios from "axios";
-import { ref, reactive } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import { watch } from "vue";
 
 const text = ref<string>("");
@@ -75,35 +75,43 @@ const textareaResize = () => {
   textarea.style.height = textarea.scrollHeight + "px";
 };
 //Modal backdrop below
-const bodyElement: HTMLBodyElement | null = document.querySelector("body");
-setTimeout(() => {
-  const searchBar = document.getElementById("searchBar");
-  if (searchBar) {
+function setBackdrop() {
+  watch(
+    () => props.isModalOpen,
+    () => {
+      const searchBar = document.getElementById("searchBar");
+      if (searchBar) {
+        searchBar.classList.toggle("activeModal", props.isModalOpen);
+      }
+    }
+  );
+
+  const bodyElement: HTMLBodyElement | null = document.querySelector("body");
+  if (bodyElement) {
     watch(
       () => props.isModalOpen,
       (newValue) => {
         if (newValue) {
-          searchBar.classList.add("activeModal");
+          bodyElement.classList.add("activeModal");
         } else {
-          searchBar.classList.remove("activeModal");
+          bodyElement.classList.remove("activeModal");
         }
       }
     );
   }
-}, 0);
 
-if (bodyElement) {
   watch(
     () => props.isModalOpen,
-    (newValue) => {
-      if (newValue) {
-        bodyElement.classList.add("activeModal");
-      } else {
-        bodyElement.classList.remove("activeModal");
-      }
-    }
+    (newValue) =>
+      document.documentElement.style.setProperty(
+        "--border-main",
+        newValue ? "#ffffff" : "#2f3336"
+      )
   );
 }
+onMounted(() => {
+  setBackdrop();
+});
 </script>
 
 <template>

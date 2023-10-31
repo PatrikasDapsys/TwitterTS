@@ -230,6 +230,7 @@ onMounted(() => {
   display: flex;
   justify-content: space-between;
   color: gray;
+  padding-right: 8px;
   .likes {
     display: flex;
     align-items: center;

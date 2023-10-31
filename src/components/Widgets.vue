@@ -62,7 +62,6 @@ const trendingTabs = [
         <input
           type="text"
           placeholder="Search"
-          maxlength="30"
           v-model="searchBarText"
           ref="searchInput"
         />
@@ -172,9 +171,9 @@ section {
     background-color: transparent;
     outline: none;
     color: inherit;
-    flex: 1;
     font-size: 14px;
     color: white;
+    width: 82%;
   }
   .fa-circle-xmark {
     color: var(--brandBlue);
