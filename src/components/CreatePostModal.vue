@@ -10,6 +10,7 @@ const username = ref<string>("");
 const handle = ref<string>("");
 const profileImg = ref<string>("");
 const allowPost = reactive(ref<boolean>(false));
+const CharacterCountCircleID: number = createUniqueID();
 
 const emit = defineEmits();
 const props = defineProps({
@@ -175,7 +176,7 @@ if (bodyElement) {
                 v-if="text"
                 :characterCount="text.length"
                 :maxLength="270"
-                :id="createUniqueID()"
+                :id="CharacterCountCircleID"
               />
               <button type="submit" :disabled="!allowPost">Post</button>
             </div>

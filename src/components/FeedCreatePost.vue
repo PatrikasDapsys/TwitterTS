@@ -12,6 +12,7 @@ const handle = ref<string>("");
 const profileImg = ref<string>("");
 const allowPost = ref<boolean>(false);
 const hasBeenActivated = ref<boolean>(false);
+const CharacterCountCircleID: number = createUniqueID();
 
 //Create Post
 function submitForm(event: Event) {
@@ -128,7 +129,7 @@ const textareaResize = () => {
             v-if="text"
             :characterCount="text.length"
             :maxLength="200"
-            :id="createUniqueID()"
+            :id="CharacterCountCircleID"
           />
           <button type="submit" :disabled="!allowPost">Post</button>
         </div>
@@ -177,7 +178,7 @@ const textareaResize = () => {
         }
       }
       textarea {
-        margin-top: 8px;
+        margin: 8px 0;
         font-size: 20px;
         width: 100%;
         transition: height 0.3s;

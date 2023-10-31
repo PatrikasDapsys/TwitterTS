@@ -21,6 +21,10 @@ const whenCreated = ref<number | string>(props.createdAt || 0);
 const timeFormat = ref<string>("");
 const totalLikes = ref<number>(props.likes || 0);
 const hasLikedBeenClicked = ref<boolean>(false);
+const isValidProfileImg = ref<boolean>(true);
+const default_img: string =
+  "https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png";
+
 function calcuteWhenCreated() {
   const date = new Date(whenCreated.value);
   const now = new Date();
@@ -58,8 +62,22 @@ function likeClicked() {
   hasLikedBeenClicked.value = !hasLikedBeenClicked.value;
 }
 
+function isValidImage(imgUrl: string) {
+  const image = new Image();
+  image.src = imgUrl;
+
+  image.onload = function () {
+    isValidProfileImg.value = true; // Image is valid
+  };
+
+  image.onerror = function () {
+    isValidProfileImg.value = false; // Image is not valid
+  };
+}
+
 onMounted(() => {
   calcuteWhenCreated();
+  isValidImage(props.profileImg);
 });
 </script>
 
@@ -67,7 +85,7 @@ onMounted(() => {
   <article class="post">
     <div class="post__profileImg">
       <figure>
-        <img :src="profileImg" alt="" />
+        <img :src="isValidProfileImg ? profileImg : default_img" alt="" />
       </figure>
     </div>
     <div class="post__text">
