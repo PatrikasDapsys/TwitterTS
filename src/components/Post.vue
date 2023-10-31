@@ -85,7 +85,10 @@ onMounted(() => {
   <article class="post">
     <div class="post__profileImg">
       <figure>
-        <img :src="isValidProfileImg ? profileImg : default_img" alt="" />
+        <img
+          :src="isValidProfileImg ? profileImg : default_img"
+          alt="profile image"
+        />
       </figure>
     </div>
     <div class="post__text">
@@ -177,6 +180,7 @@ onMounted(() => {
 .post__text {
   display: flex;
   flex-direction: column;
+  max-width: calc(100% - 52px);
   flex: 1;
 }
 
@@ -220,6 +224,7 @@ onMounted(() => {
 
 .post__middle {
   margin-bottom: 8px;
+  word-wrap: break-word;
 }
 .post__bottom {
   display: flex;
