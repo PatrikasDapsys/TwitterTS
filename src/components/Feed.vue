@@ -3,6 +3,7 @@ import Post from "./Post.vue";
 import { ref, reactive, onMounted } from "vue";
 import axios, { type AxiosResponse } from "axios";
 import FeedCreatePost from "./FeedCreatePost.vue";
+import Loader from "./Loader.vue";
 
 defineEmits(["reload-post"]);
 const postStatus = reactive(ref<string>(""));
@@ -69,6 +70,7 @@ onMounted(() => {
           :id="post.id"
         />
       </div>
+      <div class="loader" v-else v-if="postStatus === ''"><Loader /></div>
     </main>
   </section>
 </template>
@@ -77,6 +79,12 @@ onMounted(() => {
 section {
   width: 100%;
   position: relative;
+}
+
+.loader {
+  padding: 20px 12px;
+  display: flex;
+  justify-content: center;
 }
 header {
   width: 100%;

@@ -29,7 +29,6 @@ watch(
     const percentageOfColoredCircle: number = Math.round(
       props.characterCount / (props.maxLength / 100)
     );
-    console.log(percentageOfColoredCircle);
     //characterCount over Maxlength
     if (props.characterCount > props.maxLength - 1) {
       if (innerCircle && circle) {

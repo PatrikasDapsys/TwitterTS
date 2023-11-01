@@ -67,12 +67,10 @@ watch(
 );
 
 //Modal size
-const textareaResize = () => {
-  const textarea: HTMLTextAreaElement | null =
-    document.querySelector("textarea");
-  if (!textarea) return;
+const autoResize = (event: Event) => {
+  const textarea = event.target as HTMLTextAreaElement;
   textarea.style.height = "auto";
-  textarea.style.height = textarea.scrollHeight + "px";
+  textarea.style.height = `${textarea.scrollHeight}px`;
 };
 //Modal backdrop below
 function setBackdrop() {
@@ -162,7 +160,7 @@ onMounted(() => {
               </div>
               <textarea
                 placeholder="What is happening?!"
-                @input="textareaResize"
+                @input="autoResize($event)"
                 v-model="text"
                 maxlength="1269"
               ></textarea>
@@ -342,7 +340,7 @@ onMounted(() => {
 
 .bottom {
   .bottom__top {
-    padding: 0 12px 12px 12px;
+    padding: 0 12px 12px 0px;
     border-bottom: 1px solid rgb(47, 51, 54);
     button {
       color: var(--brandBlue);
