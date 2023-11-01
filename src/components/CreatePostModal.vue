@@ -171,8 +171,10 @@ onMounted(() => {
         </div>
         <div class="bottom">
           <div class="bottom__top">
-            <font-awesome-icon icon="fa-solid fa-earth-americas" />
-            &nbsp;Everyone can reply
+            <button>
+              <font-awesome-icon icon="fa-solid fa-earth-americas" />
+              &nbsp;Everyone can reply
+            </button>
           </div>
           <div class="bottom__bottom">
             <div class="bottum__options">
@@ -340,11 +342,20 @@ onMounted(() => {
 
 .bottom {
   .bottom__top {
-    color: var(--brandBlue);
-    font-weight: 700;
-    font-size: 14px;
     padding: 0 12px 12px 12px;
     border-bottom: 1px solid rgb(47, 51, 54);
+    button {
+      color: var(--brandBlue);
+      font-weight: 700;
+      font-size: 14px;
+      background-color: transparent;
+      padding: 4px 14px;
+      border-radius: 9999px;
+      transition: all 200ms ease;
+      &:hover {
+        background-color: rgba(29, 155, 240, 0.1);
+      }
+    }
   }
   .bottom__bottom {
     display: flex;
