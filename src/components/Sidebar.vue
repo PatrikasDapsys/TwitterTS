@@ -82,7 +82,10 @@ const Tabs: {
         </li>
       </ul>
       <div class="postWrapper">
-        <button class="postButton" @click="toggleModal">Post</button>
+        <button class="postButton" @click="toggleModal">
+          <span>Post</span>
+          <font-awesome-icon icon="fa-solid fa-feather-pointed" />
+        </button>
       </div>
     </div>
   </section>
@@ -135,6 +138,9 @@ li {
   width: 100%;
   display: flex;
   justify-content: center;
+  .fa-feather-pointed {
+    display: none;
+  }
 }
 .postButton {
   width: 90%;
@@ -149,6 +155,34 @@ li {
   margin-top: 24px;
   &:hover {
     filter: brightness(0.85);
+  }
+}
+
+@media (max-width: 1296px) {
+  li {
+    display: flex;
+    justify-content: end;
+  }
+  .container {
+    margin-right: 8px;
+    a {
+      display: flex;
+      justify-content: end;
+    }
+  }
+  .postWrapper {
+    justify-content: end;
+    span {
+      display: none;
+    }
+    .fa-feather-pointed {
+      display: inline-block;
+    }
+    .postButton {
+      margin-top: 12px;
+      width: 49px;
+      height: 49px;
+    }
   }
 }
 </style>

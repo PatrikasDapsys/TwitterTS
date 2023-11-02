@@ -23,7 +23,9 @@ defineProps({
       </figure>
       <div class="">
         <div class="username">
-          {{ username }}
+          <span>
+            {{ username }}
+          </span>
           <figure class="verified">
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Twitter_Verified_Badge.svg/1200px-Twitter_Verified_Badge.svg.png"
@@ -46,6 +48,7 @@ defineProps({
   padding: 12px 16px;
   cursor: pointer;
   transition: all 200ms ease;
+  overflow: hidden;
   &:hover {
     background-color: #1d1f23;
   }
@@ -53,6 +56,7 @@ defineProps({
 
 .text {
   display: flex;
+  flex: 1;
 }
 .profile {
   width: 40px;
@@ -74,6 +78,7 @@ button {
 .username {
   display: flex;
   font-weight: 700;
+  white-space: nowrap;
   &:hover {
     text-decoration: underline;
     text-decoration-thickness: 1px;
@@ -83,5 +88,14 @@ button {
 .handle {
   color: gray;
   font-weight: 400;
+}
+
+@media (max-width: 1090px) {
+  .username {
+    span {
+      max-width: 100px;
+      overflow: hidden;
+    }
+  }
 }
 </style>

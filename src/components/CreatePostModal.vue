@@ -141,14 +141,14 @@ onMounted(() => {
                 <input
                   type="text"
                   required
-                  placeholder="Username"
+                  placeholder="Username*"
                   maxlength="15"
                   v-model="username"
                 />
                 <input
                   type="text"
                   required
-                  placeholder="Handle"
+                  placeholder="Handle*"
                   maxlength="15"
                   v-model="handle"
                 />

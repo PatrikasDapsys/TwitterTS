@@ -107,7 +107,7 @@ const trendingTabs = [
       <button class="showMore">Show more</button>
     </div>
     <nav class="copyright">
-      <div>Terms of Service</div>
+      <div>Terms of Service</div> 
       <div>Privacy Policy</div>
       <div>Cookie Policy</div>
       <div>Accessibility</div>

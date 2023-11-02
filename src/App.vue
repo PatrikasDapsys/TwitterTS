@@ -16,12 +16,13 @@ import Widgets from "./components/Widgets.vue";
 .container {
   position: relative;
   max-width: 1300px;
+  max-height: 100vh;
   width: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
   margin: 0 auto;
   overflow-y: hidden;
-  max-height: 100vh;
 }
 .sidebar {
   flex: 0.2;
@@ -35,5 +36,28 @@ import Widgets from "./components/Widgets.vue";
 .widgets {
   flex: 0.3;
   overflow-y: scroll;
+}
+
+@media (max-width: 1296px) {
+  .container {
+    width: 90%;
+  }
+  .sidebar {
+    flex: 0;
+  }
+  .feed {
+    flex: 1;
+  }
+  .widgets {
+    flex: 0.58;
+  }
+}
+@media (max-width: 1020px) {
+  .widgets {
+    display: none;
+  }
+  .feed {
+    max-width: 600px;
+  }
 }
 </style>

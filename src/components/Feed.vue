@@ -79,6 +79,7 @@ onMounted(() => {
 section {
   width: 100%;
   position: relative;
+  overflow: hidden;
 }
 
 .loader {

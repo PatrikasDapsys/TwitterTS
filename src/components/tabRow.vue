@@ -35,4 +35,15 @@ button {
     margin: 0 20px;
   }
 }
+
+@media (max-width: 1296px) {
+  button {
+    width: 49px;
+    aspect-ratio: 1/1;
+    padding: 12px;
+    div {
+      display: none;
+    }
+  }
+}
 </style>

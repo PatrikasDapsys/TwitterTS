@@ -88,7 +88,7 @@ const textareaResize = () => {
           <div class="usernames">
             <input
               type="text"
-              placeholder="Username"
+              placeholder="Username*"
               maxlength="15"
               v-model="username"
               @click="hasBeenActivated = true"
@@ -96,7 +96,7 @@ const textareaResize = () => {
             />
             <input
               type="text"
-              placeholder="Handle"
+              placeholder="Handle*"
               maxlength="15"
               v-model="handle"
               @click="hasBeenActivated = true"
@@ -186,8 +186,35 @@ const textareaResize = () => {
         margin: 8px 0;
         font-size: 20px;
         width: 100%;
+        max-height: 600px;
         transition: height 0.3s;
         overflow-y: scroll;
+        &::-webkit-scrollbar {
+          display: block;
+          width: 12px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: rgba(255, 255, 255, 0.5); /* Color of the thumb */
+          border-radius: 6px; /* Round the thumb */
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+          background-color: rgba(
+            255,
+            255,
+            255,
+            0.7
+          ); /* Hover color of the thumb */
+        }
+
+        &::-webkit-scrollbar-track {
+          background: rgba(0, 0, 0, 0.2); /* Color of the track */
+        }
+
+        &::-webkit-scrollbar-track:hover {
+          background: rgba(0, 0, 0, 0.3); /* Hover color of the track */
+        }
       }
     }
   }
