@@ -95,15 +95,17 @@ onMounted(() => {
       <!-- text -->
       <div class="post__top">
         <div class="post__topLeft">
-          <h2 class="post__top--username">
-            {{ username }}
-          </h2>
-          <figure class="verified">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Twitter_Verified_Badge.svg/1200px-Twitter_Verified_Badge.svg.png"
-              alt=""
-            />
-          </figure>
+          <span class="post__top--fullUsername">
+            <h2 class="post__top--username">
+              {{ username }}
+            </h2>
+            <figure class="verified">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Twitter_Verified_Badge.svg/1200px-Twitter_Verified_Badge.svg.png"
+                alt=""
+              />
+            </figure>
+          </span>
           <h1 class="post__top--handle">@{{ handle }}</h1>
           <span class="dot"> &#8226;</span>
           <span> {{ whenCreated }}{{ timeFormat }}</span>
@@ -115,13 +117,9 @@ onMounted(() => {
         {{ text }}
       </p>
       <div class="post__bottom">
-        <div>
-          <font-awesome-icon icon="fa-regular fa-comment" />
-        </div>
-        <div>
-          <font-awesome-icon icon="fa-solid fa-retweet" />
-        </div>
-        <div class="likes">
+        <font-awesome-icon icon="fa-regular fa-comment" class="icon" />
+        <font-awesome-icon icon="fa-solid fa-retweet" class="icon" />
+        <div class="likes icon">
           <font-awesome-icon
             v-show="!hasLikedBeenClicked"
             icon="fa-regular fa-heart"
@@ -135,10 +133,11 @@ onMounted(() => {
           />
           <div style="width: 24px">{{ totalLikes }}</div>
         </div>
-        <div>
-          <font-awesome-icon icon="fa-solid fa-chart-simple" />
-        </div>
-        <font-awesome-icon icon="fa-solid fa-arrow-up-from-bracket" />
+        <font-awesome-icon icon="fa-solid fa-chart-simple" class="icon" />
+        <font-awesome-icon
+          icon="fa-solid fa-arrow-up-from-bracket"
+          class="icon"
+        />
       </div>
     </div>
   </article>
@@ -188,12 +187,14 @@ onMounted(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 20px;
+  min-height: 20px;
   *:not(:first-child) {
     color: gray;
   }
   .post__topLeft {
+    white-space: nowrap;
     display: flex;
+    flex-wrap: wrap;
     h1,
     h2 {
       font-size: 15px;
@@ -207,6 +208,10 @@ onMounted(() => {
       &:hover {
         text-decoration: underline;
       }
+    }
+    .post__top--fullUsername {
+      display: flex;
+      white-space: nowrap;
     }
   }
 
@@ -229,6 +234,7 @@ onMounted(() => {
 .post__bottom {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   color: gray;
   padding-right: 8px;
   .likes {
@@ -243,6 +249,14 @@ onMounted(() => {
       .fa-heart {
         background-color: rgba(#e81777, 0.1);
       }
+    }
+  }
+}
+
+@media (max-width: 380px) {
+  .post__bottom .icon {
+    &:not(:nth-child(3)) {
+      display: none;
     }
   }
 }

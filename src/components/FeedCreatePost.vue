@@ -268,4 +268,26 @@ const textareaResize = () => {
     }
   }
 }
+
+@media (max-width: 680px) {
+  .usernames {
+    flex-direction: column;
+  }
+}
+@media (max-width: 512px) {
+  .createPost__bottom {
+    flex-direction: row-reverse;
+    .createPost__options {
+      margin-left: 0 !important;
+    }
+  }
+}
+@media (max-width: 512px) {
+  .createPost__bottom {
+    flex-direction: row;
+    .createPost__options {
+      display: none !important;
+    }
+  }
+}
 </style>
