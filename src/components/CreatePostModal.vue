@@ -107,6 +107,7 @@ function setBackdrop() {
       )
   );
 }
+
 onMounted(() => {
   setBackdrop();
 });
@@ -115,7 +116,7 @@ onMounted(() => {
 <template>
   <div class="backdrop" v-if="isModalOpen">
     <section class="container">
-      <div class="top">
+      <div class="top" id="modalTop">
         <font-awesome-icon icon="fa-solid fa-x" @click="$emit('close-modal')" />
         <button class="button__drafts">Drafts</button>
       </div>
@@ -404,6 +405,23 @@ onMounted(() => {
         }
       }
     }
+  }
+}
+
+@media (max-width: 620px) {
+  .backdrop {
+    background-color: var(--background-main);
+  }
+  .container {
+    margin-top: 0;
+    width: unset;
+  }
+  .usernames {
+    display: flex;
+    flex-direction: column;
+  }
+  .bottom__bottom {
+    flex-wrap: wrap;
   }
 }
 </style>
