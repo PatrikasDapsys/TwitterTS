@@ -41,6 +41,7 @@ import Widgets from "./components/Widgets.vue";
 @media (max-width: 1296px) {
   .container {
     width: 90%;
+    margin-left: 0;
   }
   .sidebar {
     flex: 0;

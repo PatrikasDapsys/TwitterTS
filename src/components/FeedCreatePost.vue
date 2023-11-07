@@ -64,13 +64,10 @@ watch(
   { immediate: true }
 );
 
-//Extend textarea
-const textareaResize = () => {
-  const textarea: HTMLTextAreaElement | null =
-    document.querySelector("textarea");
-  if (!textarea) return;
+const autoResize = (event: Event) => {
+  const textarea = event.target as HTMLTextAreaElement;
   textarea.style.height = "auto";
-  textarea.style.height = textarea.scrollHeight + "px";
+  textarea.style.height = `${textarea.scrollHeight}px`;
 };
 </script>
 
@@ -113,7 +110,7 @@ const textareaResize = () => {
             type="text"
             placeholder="What is happening?!"
             maxlength="1199"
-            @input="textareaResize"
+            @input="autoResize($event)"
             v-model="text"
             @click="hasBeenActivated = true"
             required
@@ -272,14 +269,6 @@ const textareaResize = () => {
 @media (max-width: 680px) {
   .usernames {
     flex-direction: column;
-  }
-}
-@media (max-width: 512px) {
-  .createPost__bottom {
-    flex-direction: row-reverse;
-    .createPost__options {
-      margin-left: 0 !important;
-    }
   }
 }
 @media (max-width: 512px) {

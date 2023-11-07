@@ -159,6 +159,9 @@ li {
 }
 
 @media (max-width: 1296px) {
+  .container {
+    margin-right: 0 !important;
+  }
   li {
     display: flex;
     justify-content: end;
