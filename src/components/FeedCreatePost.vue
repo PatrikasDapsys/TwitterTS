@@ -41,6 +41,7 @@ function submitForm(event: Event) {
       profileImg.value = "";
       allowPost.value = false;
       emit("reload-post");
+      resetSize(event);
     })
     .catch((error: any) => {
       if (error.code === "ERR_NETWORK") {
@@ -64,10 +65,20 @@ watch(
   { immediate: true }
 );
 
+//Textarea size
 const autoResize = (event: Event) => {
-  const textarea = event.target as HTMLTextAreaElement;
-  textarea.style.height = "auto";
-  textarea.style.height = `${textarea.scrollHeight}px`;
+  const textareaElement = event.target as HTMLTextAreaElement;
+  textareaElement.style.height = "auto";
+  textareaElement.style.height = `${textareaElement.scrollHeight}px`;
+};
+const resetSize = (event: Event) => {
+  console.log("submit");
+  const form = event.target as HTMLFormElement;
+  const textareaElement = form.elements.namedItem(
+    "feedTextarea"
+  ) as HTMLTextAreaElement;
+  textareaElement.style.height = "48px";
+  hasBeenActivated.value = false;
 };
 </script>
 
@@ -108,6 +119,7 @@ const autoResize = (event: Event) => {
           </div>
           <textarea
             type="text"
+            name="feedTextarea"
             placeholder="What is happening?!"
             maxlength="1199"
             @input="autoResize($event)"

@@ -187,7 +187,7 @@ onMounted(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 20px;
+  height: 20px;
   *:not(:first-child) {
     color: gray;
   }
@@ -253,6 +253,11 @@ onMounted(() => {
   }
 }
 
+@media (max-width: 880px) {
+  .post__top {
+    height: min-content;
+  }
+}
 @media (max-width: 380px) {
   .post__bottom .icon {
     &:not(:nth-child(3)) {
