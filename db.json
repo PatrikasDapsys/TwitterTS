@@ -17,15 +17,6 @@
       "text": "This was created by Patrikas Dapšys using Vue3, TypeScript, SCSS. I would appreciate any feedback!",
       "likes": 1,
       "createdAt": 1699813591469
-    },
-    {
-      "id": 37520793181,
-      "username": "ads",
-      "handle": "asd",
-      "profileImg": "",
-      "text": "asdasd",
-      "likes": 0,
-      "createdAt": 1699814590423
     }
   ]
 }
