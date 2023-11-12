@@ -240,6 +240,7 @@ onMounted(() => {
   .likes {
     display: flex;
     align-items: center;
+    cursor: pointer;
     .fa-heart {
       padding: 8px;
       border-radius: 100%;
