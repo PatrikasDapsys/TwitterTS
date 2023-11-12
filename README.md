@@ -19,10 +19,12 @@ Make sure you have Node.js and npm installed on your machine.
 4. Running the Server:
    To run the server, execute the following command:
    > npm run server
+   
    This will start the server necessary for the application to function properly.
 5. Running the Development Server:
    To run the development server and launch the application, use the following command:
    > npm run dev
+   
    This will start the development server, and you can access the application in your web browser at localhost.
    
 ## Usage
