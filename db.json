@@ -2,39 +2,30 @@
   "post": [
     {
       "id": 40100765880,
-      "username": "User",
-      "handle": "dasda",
-      "profileImg": "https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg",
-      "text": "New Post????",
-      "likes": 3,
+      "username": "Elon Musk",
+      "handle": "elonmusk",
+      "profileImg": "https://pbs.twimg.com/profile_images/1683325380441128960/yRsRRjGO_400x400.jpg",
+      "text": "Feel free to make a post!",
+      "likes": 62,
       "createdAt": 1697900725848
     },
     {
-      "id": 26520508762,
-      "username": "joe",
-      "handle": "ral one",
-      "profileImg": "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?size=626&ext=jpg&ga=GA1.1.386372595.1697760000&semt=ais",
-      "text": "aghain!!!",
-      "likes": 3,
-      "createdAt": 1697900850043
-    },
-    {
-      "id": 54617290238,
-      "username": "person",
-      "handle": "realOne",
-      "profileImg": "https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg",
-      "text": "i am",
+      "id": 22598263000,
+      "username": "Creator",
+      "handle": "patrikasdapsys",
+      "profileImg": "https://media.licdn.com/dms/image/D4E03AQHGi7MJvWnGxg/profile-displayphoto-shrink_400_400/0/1690972961445?e=1705536000&v=beta&t=1ooTu-UIuj1pvgvHBuDwQO3kLjvjothHbKNVY6-Gu_M",
+      "text": "This was created by Patrikas Dapšys using Vue3, TypeScript, SCSS. I would appreciate any feedback!",
       "likes": 1,
-      "createdAt": 1697903357879
+      "createdAt": 1699813591469
     },
     {
-      "id": 71072693116,
-      "username": "mike",
-      "handle": "mikehock",
-      "profileImg": "https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png",
-      "text": "what is this",
-      "likes": 8,
-      "createdAt": 1697907529605
+      "id": 37520793181,
+      "username": "ads",
+      "handle": "asd",
+      "profileImg": "",
+      "text": "asdasd",
+      "likes": 0,
+      "createdAt": 1699814590423
     }
   ]
 }

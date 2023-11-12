@@ -3,6 +3,7 @@ export function createUniqueID() {
   return id;
 }
 export function areCharactersValid(username: string, handle: string) {
-  const pattern = /^[a-zA-Z0-9]+$/; //Contains only aA-zZ and 0-9
-  return pattern.test(username) && pattern.test(handle);
+  const patternWithNoSpace = /^[a-zA-Z0-9]+$/; //Contains only aA-zZ and 0-9 no spaces
+  const patternWithSpace = /^[a-zA-Z0-9 ]+$/; //Contains only aA-zZ and 0-9 with spaces
+  return patternWithSpace.test(username) && patternWithNoSpace.test(handle);
 }

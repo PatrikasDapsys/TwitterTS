@@ -9,7 +9,7 @@ const text = ref<string>("");
 const username = ref<string>("");
 const handle = ref<string>("");
 const profileImg = ref<string>("");
-const allowPost = reactive(ref<boolean>(false));
+const allowPost = ref<boolean>(false);
 const CharacterCountCircleID: number = createUniqueID();
 
 const emit = defineEmits();
@@ -23,10 +23,10 @@ const props = defineProps({
 //Create Post
 function createPost(event: Event) {
   if (!areCharactersValid(username.value, handle.value)) {
+    event.preventDefault();
     alert("Please use valid characters(Aa-Zz;0-9) and try again.");
     return;
   }
-  event.preventDefault();
   axios
     .post("http://localhost:8080/post", {
       id: createUniqueID(),
