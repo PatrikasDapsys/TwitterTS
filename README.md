@@ -1,40 +1,32 @@
-# package
+# X.com Clone
 
-This template should help get you started developing with Vue 3 in Vite.
+## Overview
+This project is a clone of X.com, built using Vue 3, TypeScript, and SCSS. The application allows users to create and like posts, use modals, and provides an interactive user experience.
 
-## Recommended IDE Setup
+## Getting Started
+To set up the project on the client's side, follow these steps:
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Prerequisites
+Make sure you have Node.js and npm installed on your machine.
 
-## Type Support for `.vue` Imports in TS
+### Installation and setup:
+1. Clone the repository:
+   > git clone https://github.com/PatrikasDapsys/TwitterTS
+2. Navigate to the project directory:
+   > cd TwitterTS
+3. Install dependencies:
+   > npm install
+4. Running the Server:
+   To run the server, execute the following command:
+   > npm run server
+   This will start the server necessary for the application to function properly.
+5. Running the Development Server:
+   To run the development server and launch the application, use the following command:
+   > npm run dev
+   This will start the development server, and you can access the application in your web browser at localhost.
+   
+## Usage
+Once the application is running, open your browser and go to localhost to interact with the X.com clone. Explore the features such as creating and liking posts, using modals, and enjoying the interactive elements.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
+## Feedback
+Your feedback is valuable! If you encounter any issues or have suggestions for improvement, please let us know. We appreciate your input.
